@@ -1,0 +1,20 @@
+CODE RELATED
+
+electron, astro, tailwindcss, typescript, nodets, fs-extra, uuid
+c++, (--bioblioteki)
+python (moje bi) s tensorflow, gcp apis, ar apis
+
+gcp apis, ar apis, ai gcp
+
+project idx, vs code, visual studio, clion, codium/cursor
+jetbrains space, gitlab
+
+DOCS/COMS
+
+word, powerpoint, teams
+
+Visual-Related
+
+Figma, Figjam, Adobe Cloud, Blender
+
+Google Cloud
