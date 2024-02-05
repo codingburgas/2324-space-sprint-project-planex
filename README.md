@@ -21,13 +21,13 @@
 <p align="left" gap="10px">
 <a href="https://visualstudio.microsoft.com/"><img width="48" height="48" src="https://img.icons8.com/fluency/48/visual-studio.png" alt="visual-studio"/></a>
 <a href="https://code.visualstudio.com/"><img src="https://img.icons8.com/color/344/visual-studio-code-2019.png" alt="VS code logo" width=48px /></a>
-<a href="https://code.visualstudio.com/"><img src="images/clion.svg" alt="VS code logo" width=48px /></a>
-<a href="https://code.visualstudio.com/"><img src="images/idx.svg" alt="VS code logo" width=48px /></a>
+<a href="https://code.visualstudio.com/"><img src="Images/clion.svg" alt="VS code logo" width=48px /></a>
+<a href="https://code.visualstudio.com/"><img src="Images/idx.svg" alt="VS code logo" width=48px /></a>
 <a href="https://github.com/"><img src="https://img.icons8.com/nolan/344/github.png" alt="GitHub logo" width=52px /></a>
 <a href="https://about.gitlab.com/"><img width="48" height="48" src="https://img.icons8.com/color/48/gitlab.png" alt="gitlab"/>
 <a href="https://git-scm.com/"><img width="48" height="48" src="https://img.icons8.com/color/48/git.png" alt="git"/> </a>
-<a href="https://nodejs.org/en"><img width="48" height="48" src="images/google-cloud.svg" alt="solid"/></a>
-<a href="https://nodejs.org/en"><img width="100" height="40" src="images/jetbrains.svg" alt="solid"/></a>
+<a href="https://nodejs.org/en"><img width="48" height="48" src="Images/google-cloud.svg" alt="solid"/></a>
+<a href="https://nodejs.org/en"><img width="100" height="40" src="Images/jetbrains.svg" alt="solid"/></a>
 </p>
 
 ### Used tools for the visual elements:
@@ -44,11 +44,11 @@
     <a href="https://cplusplus.com/"><img width="68" height="48" src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Opengl-logo.svg" alt="c-plus-plus-logo"/></a>
     <a href="https://www.typescriptlang.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" alt="Typescript logo" width=50px /></a>
     <a href="https://www.electronjs.org/"> <img width="48" height="48" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/electron-icon.png" alt="Electron"></a>
-    <a href="https://astro.build/"> <img width="48" height="45" alt="astro" src="images/astro-icon-light-gradient.svg"></a>
-    <a href="https://tailwindcss.com/"> <img width="48" height="48" src="images/solid.svg" alt="tailwind_css" alt="Tailwind"/>
+    <a href="https://astro.build/"> <img width="48" height="45" alt="astro" src="Images/astro-icon-light-gradient.svg"></a>
+    <a href="https://tailwindcss.com/"> <img width="48" height="48" src="Images/solid.svg" alt="tailwind_css" alt="Tailwind"/>
     <a href="https://nodejs.org/en/"><img src="https://raw.githubusercontent.com/TypeStrong/ts-node/HEAD/logo.svg?sanitize=true" alt="nodejs" width="130px" height="50px"/></a>
     <a href="https://tailwindcss.com/"> <img width="48" height="48" src="https://img.icons8.com/fluency/48/tailwind_css.png" alt="tailwind_css" alt="Tailwind"/>
-    <a href="https://tailwindcss.com/"> <img width="54" height="48" src="images/htmx.svg" alt="tailwind_css" alt="Tailwind"/></a>
+    <a href="https://tailwindcss.com/"> <img width="54" height="48" src="Images/htmx.svg" alt="tailwind_css" alt="Tailwind"/></a>
 </p>
 
 ### Used tools for our documentation, presentation & communication:
