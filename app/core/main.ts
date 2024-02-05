@@ -5,7 +5,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 const iconPath : string = "./assets/icon.ico";
-const createWindow = () => {
+async function win() {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -21,9 +21,28 @@ const createWindow = () => {
   mainWindow.loadURL("http://localhost:3000/");
   }
   mainWindow.webContents.openDevTools();
-};
 
-app.on('ready', createWindow);
+  ipcMain.on('bar', (event, arg) => {
+  if (arg == "close"){
+    app.quit();
+  }
+  else if (arg == "max"){
+    if (mainWindow.isMaximized())
+      mainWindow.unmaximize();
+    else
+      mainWindow.maximize();
+    }
+  else if (arg == "min"){
+      mainWindow.minimize();
+    }
+});
+  
+}
+
+app.whenReady().then(() => {
+  win();
+})
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -32,6 +51,6 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    win();
   }
 });

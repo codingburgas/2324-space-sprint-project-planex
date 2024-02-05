@@ -1,6 +1,7 @@
-<<<<<<< HEAD
-import { createSignal, onCleanup, createEffect } from "solid-js";
-import { useNavigate } from "solid-app-router";
+import { createSignal, onCleanup, createEffect, onMount } from "solid-js";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const CombinedComponent = () => {
   const yellowBG : string | undefined = "bg-yellow-500";
   const greenBG : string | undefined = "bg-green-500";
@@ -23,10 +24,31 @@ const CombinedComponent = () => {
       window.location.href = "http://localhost:3000/solar"
   });
 
+  onMount(() => {
+    AOS.init();
+  });
+
+  const [text, setText] = createSignal(""); 
+
+  let state = 0; 
+  const messages = ["", ".", "..", "..."]; 
+
+  const updateText = () => {
+    if (state === 4)
+      state = 0;
+    setText(messages[state]); 
+    state++;
+  };
+
+  createEffect(() => {
+    const interval = setInterval(updateText, 500);
+    onCleanup(() => clearInterval(interval));
+  });
+
+
   return (
-    <div class="__loading-screen text-center overflow-hidden h-screen w-screen" style={{ "font-family": "Inter, sans-serif" }}>
+    <div class="__loading-screen text-center overflow-hidden h-screen w-screen bg-black" style={{ "font-family": "Inter, sans-serif" }}>
         <span class="text-5xl text-[#888] pt-[12rem] inline absolute left-[50%] -translate-x-[50%]"> The earth is almost 1 AU away from the sun (1.496e+8). 
-        <a href="http://localhost:3000/solar">dfadsadsdas</a>
         </span>
         <div class="flex flex-col justify-center items-center h-screen bg-black">
             <div class="w-[45vw] flex flex-col items-center __loading-bar ">
@@ -39,7 +61,7 @@ const CombinedComponent = () => {
                     style={{ width: `${progress()}%` }}
                     ></div>
                 </div>
-                <span class="text-[#efefef] text-3xl opacity-85">loading textures.. </span>
+                <span class="text-[#efefef] text-3xl opacity-85"  data-aos="fade-right" data-aos-duration="1000">loading textures<span>{text()}</span> </span>
             </div>
         </div>
     </div>
@@ -47,5 +69,4 @@ const CombinedComponent = () => {
 };
 
 export default CombinedComponent;
-=======
->>>>>>> 8c2b473000c1f6854e59fd5756b644cda6cea900
+
