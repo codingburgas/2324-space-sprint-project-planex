@@ -1,8 +1,8 @@
 {
-  "name": "my-new-app",
-  "productName": "my-new-app",
+  "name": "Planex",
+  "productName": "Planex",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "very cool",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
