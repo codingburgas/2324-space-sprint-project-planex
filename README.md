@@ -27,7 +27,7 @@
 <a href="https://about.gitlab.com/"><img width="48" height="48" src="https://img.icons8.com/color/48/gitlab.png" alt="gitlab"/>
 <a href="https://git-scm.com/"><img width="48" height="48" src="https://img.icons8.com/color/48/git.png" alt="git"/> </a>
 <a href="https://nodejs.org/en"><img width="48" height="48" src="Images/google-cloud.svg" alt="solid"/></a>
-<a href="https://nodejs.org/en"><img width="100" height="40" src="Images/jetbrains.svg" alt="solid"/></a>
+<a href="https://nodejs.org/en"><img width="120" height="45" src="Images/jetbrains.svg" alt="solid"/></a>
 </p>
 
 ### Used tools for the visual elements:
@@ -36,19 +36,28 @@
 <a href="https://www.figma.com/"><img src="https://img.icons8.com/color/344/figma--v1.png" alt="Figma logo" width=48px/></a>
 <a href="https://www.adobe.com/creativecloud.html"><img src="https://www.adobe.com/content/dam/shared/images/product-icons/svg/creative-cloud.svg" alt="adobe creative cloud" width=48px /></a>
 <a href="https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap"><img src="https://adpyke.gallerycdn.vsassets.io/extensions/adpyke/codesnap/1.3.4/1625238962906/Microsoft.VisualStudio.Services.Icons.Default" alt="adobe creative cloud" width=48px /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap"><img src="images/qt-deisgn.svg" alt="adobe creative cloud" width=150px height="45" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap"><img src="https://www.blender.org/wp-content/uploads/2020/07/blender_logo_no_socket_white.png" alt="adobe creative cloud" width=140px height="47" /></a>
 </p>
 
 ### Used technologies for development:
 <p align="left gap="10px">
     <a href="https://cplusplus.com/"><img width="48" height="48" src="https://img.icons8.com/fluency/48/c-plus-plus-logo.png" alt="c-plus-plus-logo"/></a>
     <a href="https://cplusplus.com/"><img width="68" height="48" src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Opengl-logo.svg" alt="c-plus-plus-logo"/></a>
+    <a href="https://cplusplus.com/"><img width="68" height="48" src="images/gcp.svg" alt="c-plus-plus-logo"/></a>
+    <a href="https://cplusplus.com/"><img width="60" height="48" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg" alt="c-plus-plus-logo"/></a>
     <a href="https://www.typescriptlang.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" alt="Typescript logo" width=50px /></a>
     <a href="https://www.electronjs.org/"> <img width="48" height="48" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/electron-icon.png" alt="Electron"></a>
     <a href="https://astro.build/"> <img width="48" height="45" alt="astro" src="Images/astro-icon-light-gradient.svg"></a>
     <a href="https://tailwindcss.com/"> <img width="48" height="48" src="Images/solid.svg" alt="tailwind_css" alt="Tailwind"/>
+    <a href="https://reactjs.org/docs/getting-started.html"><img src="https://img.icons8.com/color/344/react-native.png" alt="react" width=48px /></a>
     <a href="https://nodejs.org/en/"><img src="https://raw.githubusercontent.com/TypeStrong/ts-node/HEAD/logo.svg?sanitize=true" alt="nodejs" width="130px" height="50px"/></a>
+    <a href="https://threejs.org/"><img src="https://global.discourse-cdn.com/standard17/uploads/threejs/original/2X/e/e4f86d2200d2d35c30f7b1494e96b9595ebc2751.png" alt="three js" width=48px /></a>
     <a href="https://tailwindcss.com/"> <img width="48" height="48" src="https://img.icons8.com/fluency/48/tailwind_css.png" alt="tailwind_css" alt="Tailwind"/>
+    <a href="https://sass-lang.com/"><img src="https://img.icons8.com/color/344/sass.png" alt="SASS logo" width=48px /></a>
     <a href="https://tailwindcss.com/"> <img width="54" height="48" src="Images/htmx.svg" alt="tailwind_css" alt="Tailwind"/></a>
+    <a href="https://vitejs.dev/"><img src="https://vitejs.dev/logo.svg" alt="vite" width=48px /></a>
+    <a href="https://vitejs.dev/"><img src="images/web-socket.svg" alt="vite" width=50px height="45" /></a>
 </p>
 
 ### Used tools for our documentation, presentation & communication:
@@ -56,6 +65,7 @@
 <a href="https://www.microsoft.com/en/microsoft-teams/group-chat-software"><img src="https://img.icons8.com/color/344/microsoft-teams.png" alt = "MS Teams logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/344/ms-word.png" alt="MS Word logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>
+<a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="images/onenote.svg" alt="MS PowerPoint logo" width=45px height="45" /></a>
 </p>
 
 <hr>
