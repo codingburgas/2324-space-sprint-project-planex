@@ -1,4 +1,5 @@
 *.c linguist-language=Text
+*.m linguist-language=c
 *.h linguist-language=Text
 *.ts linguist-language=typescript
 *.js linguist-language=typescript
