@@ -1,2 +1,4 @@
 *.c linguist-language=Text
 *.h linguist-language=Text
+*.ts linguist-language=typescript
+
