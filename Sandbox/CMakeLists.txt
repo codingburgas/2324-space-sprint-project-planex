@@ -1,15 +1,17 @@
 cmake_minimum_required(VERSION 3.10)
-project(Sandbox)
+project(YourProjectName)
 
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Find the GLFW3 library
-find_package(glfw3 3.3 REQUIRED)
+# Include GLFW headers
+include_directories(${PROJECT_SOURCE_DIR}/include/glfw)
 
-# Find the OpenGL library
-find_package(OpenGL REQUIRED)
+# Add the executable
+add_executable(${PROJECT_NAME} main.cpp)
 
-add_executable(YourProjectName main.cpp)
+# Specify the library path
+link_directories(${PROJECT_SOURCE_DIR}/lib)
 
-# Link against GLFW and OpenGL
-target_link_libraries(YourProjectName glfw ${OPENGL_gl_LIBRARY})
+# Link the executable to the GLFW library
+target_link_libraries(${PROJECT_NAME} glfw3)

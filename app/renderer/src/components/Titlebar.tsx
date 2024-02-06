@@ -28,13 +28,13 @@ export default function Titlebar() {
             <div class="flex flex-row pl-16 antialiased">
                 <img srcSet={iconPath} alt="icon" class="pt-4" />
                 <div class="ml-auto mr-0 flex flex-row antialiased">
-                    <div class="flex justify-center items-center w-[6rem] h-[4.5rem] duration-200 close btn hover:bg-[#888] hover:bg-opacity-60 rounded-sm" onClick={minimize}>
+                    <div class="flex justify-center items-center w-[6rem] h-[4.5rem] duration-200 close btn hover:bg-[#888] hover:bg-opacity-60 rounded-sm selection:bg-transparent" onClick={minimize}>
                         <img src={closePath} alt="close" />
                     </div>
-                    <div class="flex justify-center items-center w-[6rem] h-[4.5rem] duration-200 hover:bg-[#888] hover:bg-opacity-60 hover:cursor-default btn rounded-sm" onClick={maximize}>
+                    <div class="flex justify-center items-center w-[6rem] h-[4.5rem] duration-200 hover:bg-[#888] hover:bg-opacity-60 hover:cursor-default btn rounded-sm selection:bg-transparent" onClick={maximize}>
                         <img srcSet={resizePath} alt="resize" />
                     </div>
-                    <div class="flex justify-center items-center w-[6rem] h-[4.5rem] duration-200 hover:bg-[#FEDD00] hover:bg-opacity-95 hover:cursor-default close btn rounded-sm" onClick={close}>
+                    <div class="flex justify-center items-center w-[6rem] h-[4.5rem] duration-200 hover:bg-[#FEDD00] hover:bg-opacity-95 hover:cursor-default close btn rounded-sm selection:bg-transparent" onClick={close}>
                         <img srcSet={moonPath} alt="moon" />
                     </div>
                 </div>

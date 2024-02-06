@@ -1,0 +1,14 @@
+#anim {
+  overflow: hidden;
+  border-right: 0.2rem solid #FEDD00;
+  white-space: nowrap;
+  letter-spacing: .15em;
+  animation: 
+    typing 7s steps(40, end) infinite,
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #FEDD00; }
+}

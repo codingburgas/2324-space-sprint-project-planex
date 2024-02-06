@@ -1,14 +1,21 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, screen } from 'electron';
 import path from 'path';
 
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
-const iconPath : string = "./assets/icon.ico";
+const iconPath = "./assets/icon.ico";
+let primaryDisplay : Electron.Display, screenSize : Electron.Size;
+async function retrieveData() : Promise<void> {
+  primaryDisplay = screen.getPrimaryDisplay();
+  screenSize = primaryDisplay.workAreaSize;
+}
+
 async function win() {
+  await retrieveData();
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: screenSize.width,
+    height: screenSize.height,
     frame: false,
     icon: path.join(iconPath),
     webPreferences: {
