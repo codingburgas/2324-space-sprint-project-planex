@@ -5,6 +5,4 @@
 *.js linguist-language=typescript
 *.tsx linguist-language=typescript
 *.jsx linguist-language=typescript
-*.scss linguist-language=Text
-
-
+*.css linguist-language=scss
