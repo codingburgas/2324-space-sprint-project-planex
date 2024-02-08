@@ -1,8 +1,10 @@
 #include <iostream>
 #include "vector.h"
+using Vector::Vec3;
+using std::cin, std::cout, std::endl;
 
 int main() {
-	Vector::Vec3 vector(3,3.2,3.1);
-	vector.print();
-	
+
+
+
 }
