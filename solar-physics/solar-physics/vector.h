@@ -7,7 +7,9 @@
 using std::cin, std::cout, std::endl;
 
 namespace Vector {
+
 	class Vec3 {
+
 	public:
 		real x, y, z;
 		bool normalised = false;
@@ -68,53 +70,45 @@ namespace Vector {
 				vector->x = 0, vector->y = 0, vector->z = 0;
 		}
 
-		auto addScaledVector(const Vec3* vector, const real& scale) {
-			this->x = vector->x + vector->x * scale;
-			this->y = vector->y + vector->y * scale;
-			this->z = vector->z + vector->z * scale;
+		auto addScaledVector(Vec3* vector1, Vec3* vector2, const real& scale) {
+			vector1->x = vector2->x + vector2->x * scale;
+			vector1->y = vector2->x + vector2->y * scale;
+			vector1->z = vector2->z + vector2->z * scale;
 		}
 
 		void print() const {
 			cout << x << " " << y << " " << z;
 		}
 
-		Vec3 getChangePosVec3(Vec3* vector1, Vec3* vector2) {
+		Vec3 getChangePosVec3(const Vec3* vector1, const Vec3* vector2) {
 			return Vec3(fabs(vector1->x - vector2->x), fabs(vector1->y - vector2->x), fabs(vector1->z - vector2->z));
 		}
 
-		 auto scalarProduct(Vec3* vector) const {
-			 return (this->x * vector->x) + (this->y * vector->y) + (this->z * vector->z);
+		 auto scalarProduct(Vec3* vector1, Vec3* vector2) const {
+			 return (vector1->x * vector2->x) + (vector1->y * vector2->y) + (vector1->z * vector2->z);
 		}
 
-		 real getTrigonometryScalar(Vec3* vector1,Vec3* vector2 , real& cosine) const {
+		 auto crossProduct(Vec3* vector1, Vec3* vector2) const {
+			 return (vector1->x * vector2->x) - (vector1->y * vector2->y) - (vector1->z * vector2->z);
+		 }
+
+		 real getTrigonometryScalar(Vec3* vector1,Vec3* vector2 , real& relationalDegree) const {
 			 auto mag1 = getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
 			 if (vector1->normalised == true and vector2->normalised == true)
-				 return cos(cosine);
+				 return cos(relationalDegree);
 			 else if (vector1->normalised == true and vector2->normalised == true)
-				 return mag2 * cos(cosine);
-			 return (mag1 * mag2 * cos(cosine));
+				 return mag2 * cos(relationalDegree);
+			 return (mag1 * mag2 * cos(relationalDegree));
 		}
 
-		 real getTrigonometryCross(Vec3* vector1, Vec3* vector2, real& sine) {
+		 real getTrigonometryCross(Vec3* vector1, Vec3* vector2, real& relationalDegree) {
 			 auto mag1 = getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
 			 if (vector1->normalised == true and vector2->normalised == true)
-				 return sin(sine);
-			 else if (vector1->normalised == true and vector2->normalised == true)
-				 return mag2 * sin(sine);
-			 return (mag1 * mag2 * sin(sine));
+				 return sin(relationalDegree);
+			 else if (vector1->normalised == true and vector2->normalised == false)
+				 return mag2 * sin(relationalDegree);
+			 return (mag1 * mag2 * sin(relationalDegree));
 		 }
-
-		 real gettest(Vec3* vector1, Vec3* vector2, real& cosine) {
-			 auto mag1 = getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
-			 auto res = mag1 * mag2 * sqrt(1 - (scalarProduct(vector1) * (scalarProduct(vector2))));
-			 return res;
-		 }
-
-
-		 auto getCrossProduct(Vec3* vector) const {
-			 return (this->x * vector->x) - (this->y * vector->y) - (this->z * vector->z);
-		 }
-
 		 
 	private:
 		real padding;
