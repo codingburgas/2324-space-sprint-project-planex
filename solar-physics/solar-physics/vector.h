@@ -95,6 +95,22 @@ namespace Vector {
 			 return (mag1 * mag2 * cos(cosine));
 		}
 
+		 real getTrigonometryCross(Vec3* vector1, Vec3* vector2, real& sine) {
+			 auto mag1 = getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
+			 if (vector1->normalised == true and vector2->normalised == true)
+				 return sin(sine);
+			 else if (vector1->normalised == true and vector2->normalised == true)
+				 return mag2 * sin(sine);
+			 return (mag1 * mag2 * sin(sine));
+		 }
+
+		 real gettest(Vec3* vector1, Vec3* vector2, real& cosine) {
+			 auto mag1 = getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
+			 auto res = mag1 * mag2 * sqrt(1 - (scalarProduct(vector1) * (scalarProduct(vector2))));
+			 return res;
+		 }
+
+
 		 auto getCrossProduct(Vec3* vector) const {
 			 return (this->x * vector->x) - (this->y * vector->y) - (this->z * vector->z);
 		 }
