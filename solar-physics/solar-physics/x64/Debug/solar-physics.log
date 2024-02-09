@@ -1,11 +1,2 @@
 ﻿  solar-physics.cpp
-C:\Users\pomelo\Desktop\Projects\2324-space-sprint-project-planex\solar-physics\solar-physics\vector.h(7,1): error C7529: multiple using-declarators require at least '/std:c++17'
-  (compiling source file 'solar-physics.cpp')
-  
-C:\Users\pomelo\Desktop\Projects\2324-space-sprint-project-planex\solar-physics\solar-physics\vector.h(7,1): error C2429: language feature 'pack expansions in using-declarations' requires compiler flag '/std:c++17'
-  (compiling source file 'solar-physics.cpp')
-  
-C:\Users\pomelo\Desktop\Projects\2324-space-sprint-project-planex\solar-physics\solar-physics\solar-physics.cpp(7,7): error C2601: 'function': local function definitions are illegal
-  C:\Users\pomelo\Desktop\Projects\2324-space-sprint-project-planex\solar-physics\solar-physics\solar-physics.cpp(6,27):
-  this line contains a '{' which has not yet been matched
-  
+  solar-physics.vcxproj -> C:\Users\pomelo\Desktop\Projects\2324-space-sprint-project-planex\solar-physics\x64\Debug\solar-physics.exe
