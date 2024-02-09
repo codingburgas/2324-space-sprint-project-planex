@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <vector>
 using std::cin, std::cout, std::endl;
 
 namespace Vector {
@@ -22,7 +23,7 @@ namespace Vector {
 			this->z *= value;
 		}
 
-		auto operator+=(const std::unique_ptr<Vec3> vector){
+		auto operator+=(const std::unique_ptr<Vec3> vector) {
 			this->x += vector->x;
 			this->y += vector->y;
 			this->z += vector->z;
@@ -57,7 +58,7 @@ namespace Vector {
 			return sqrt(vector->x * vector->x + vector->y * vector->y + vector->z * vector->z);
 		}
 
-		real toUnitVector(std::shared_ptr<Vec3> vector) { 
+		real toUnitVector(std::shared_ptr<Vec3> vector) {  //normalizing vector
 			real magnitude = vector->getMagnitude3D(vector);
 			vector->normalised = true;
 
@@ -80,8 +81,9 @@ namespace Vector {
 			cout << x << " " << y << " " << z;
 		}
 
-		Vec3 getChangePosVec3(const std::shared_ptr<Vec3> vector1, const std::unique_ptr<Vec3> vector2) {
-			return Vec3(fabs(vector1->x - vector2->x), fabs(vector1->y - vector2->x), fabs(vector1->z - vector2->z));
+		Vec3 getChangePosVec3(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2) const {
+			return Vec3(fabs(vector1->x - vector2->x), fabs(vector1->y - vector2->y), fabs(vector1->z - vector2->z));
+			
 		}
 
 		 auto scalarProduct(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2) const {
@@ -117,12 +119,27 @@ namespace Vector {
 			 return (mag1 * mag2 * sin(relationalDegree));
 		 }
 
-		 real orthonormalBasis(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2) {
-			 Vec3 c = vector1->crossProduct(vector1, vector2);
-			 std::shared_ptr<Vec3> ptr = c;
-			 if (getMagnitude3D(ptr))
+		 std::vector<Vec3> orthonormalBasis(std::shared_ptr<Vec3> vector1, std::shared_ptr<Vec3> vector2) {
+			auto vector3 = std::make_shared<Vec3>(vector1->crossProduct(std::make_shared<Vec3>(vector1), std::make_shared<Vec3>(vector2)));
+			if (vector1->getMagnitude3D(std::make_shared<Vec3>(vector3)) == 0) {
+				return std::vector<Vec3>{0};
+			 }
+			 vector2 = std::make_shared<Vec3>(vector1->crossProduct(std::make_shared<Vec3>(vector3), std::make_shared<Vec3>(vector1)));
+			 toUnitVector(std::make_shared<Vec3>(vector1)), toUnitVector(std::make_shared<Vec3>(vector2)), toUnitVector(std::make_shared<Vec3>(vector3));
+			 std::vector<Vec3> orthonormalBasis{*(vector1), *(vector2), *(vector3)};
+			 return orthonormalBasis;
+		 }
+
+		 auto getVelocity(std::shared_ptr<Vec3> vector1, std::shared_ptr<Vec3> vector2, real& timePassed) const {
+			 std::shared_ptr<Vec3> velocityArr = std::make_shared<Vec3>(getChangePosVec3(vector1, vector2));
+			 velocityArr->x = velocityArr->x / timePassed;
+			 velocityArr->y = velocityArr->y / timePassed;
+			 velocityArr->z = velocityArr->z / timePassed;
+
+			 return velocityArr;
 		 }
 		 
+
 	private:
 		real padding;
 	};
