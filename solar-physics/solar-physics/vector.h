@@ -13,7 +13,7 @@ namespace Vector {
 	public:
 		real x, y, z;
 		bool normalised = false;
-		Vec3(const real x, const real y, const real z) : x(x), y(y), z(z) {}; // constructor
+		Vec3(real x, real y, real z) : x(x), y(y), z(z) {}; // constructor
 		Vec3() : x(0), y(0), z(0) {};
 		
 		auto operator*=(real& value) {
@@ -80,16 +80,23 @@ namespace Vector {
 			cout << x << " " << y << " " << z;
 		}
 
-		Vec3 getChangePosVec3(const std::unique_ptr<Vec3> vector1, const std::unique_ptr<Vec3> vector2) {
+		Vec3 getChangePosVec3(const std::shared_ptr<Vec3> vector1, const std::unique_ptr<Vec3> vector2) {
 			return Vec3(fabs(vector1->x - vector2->x), fabs(vector1->y - vector2->x), fabs(vector1->z - vector2->z));
 		}
 
-		 auto scalarProduct(const std::unique_ptr<Vec3> vector1, const std::unique_ptr<Vec3> vector2) const {
+		 auto scalarProduct(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2) const {
 			 return (vector1->x * vector2->x) + (vector1->y * vector2->y) + (vector1->z * vector2->z);
 		}
 
-		 auto crossProduct(std::unique_ptr<Vec3> vector1, std::unique_ptr<Vec3> vector2) const {
-			 return (vector1->x * vector2->x) - (vector1->y * vector2->y) - (vector1->z * vector2->z);
+		 auto crossProduct(std::shared_ptr<Vec3> vector1, std::shared_ptr<Vec3> vector2) const {
+			 real* x = new real((vector1->y * vector2->z) - (vector1->z * vector2->y));
+			 real* y = new real((vector1->z * vector2->x) - (vector1->x * vector2->z));
+			 real* z = new real((vector1->x * vector2->y) - (vector1->y * vector2->x));
+
+			 return Vec3(*x, *y, *z);
+
+			 delete x, y, z;
+
 		 }
 
 		 real getTrigonometryScalar(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2, real& relationalDegree) const {
@@ -102,12 +109,18 @@ namespace Vector {
 		}
 
 		 real getTrigonometryCross(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2, real& relationalDegree) {
-			 auto mag1 = vector1->getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
+			 auto mag1 = vector1->getMagnitude3D(vector1), mag2 = vector2->getMagnitude3D(vector2);
 			 if (vector1->normalised == true and vector2->normalised == true)
 				 return sin(relationalDegree);
 			 else if (vector1->normalised == true and vector2->normalised == false)
 				 return mag2 * sin(relationalDegree);
 			 return (mag1 * mag2 * sin(relationalDegree));
+		 }
+
+		 real orthonormalBasis(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2) {
+			 Vec3 c = vector1->crossProduct(vector1, vector2);
+			 std::shared_ptr<Vec3> ptr = c;
+			 if (getMagnitude3D(ptr))
 		 }
 		 
 	private:
