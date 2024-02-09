@@ -22,13 +22,13 @@ namespace Vector {
 			this->z *= value;
 		}
 
-		auto operator+=(Vec3* vector){
+		auto operator+=(const std::unique_ptr<Vec3> vector){
 			this->x += vector->x;
 			this->y += vector->y;
 			this->z += vector->z;
 		}
 
-		auto operator-=(const Vec3* vector) {
+		auto operator-=(const std::unique_ptr<Vec3> vector) {
 			this->x -= vector->x;
 			this->y -= vector->y;
 			this->z -= vector->z;
@@ -38,28 +38,28 @@ namespace Vector {
 			return Vec3(x * value, y * value, z * value);
 		}
 
-		auto operator+(const Vec3* vector) const {
+		auto operator+(const std::unique_ptr<Vec3> vector) const {
 			return Vec3(this->x + vector->x, this->y + vector->y, this->z + vector->z);
 		}
 
-		auto operator-(const Vec3* vector) const {
+		auto operator-(const std::unique_ptr<Vec3> vector) const {
 			return Vec3(this->x - vector->x, this->y - vector->y, this->z - vector->z);
 		}
 
 
-		auto invert(Vec3* vector) const {
+		auto invert(std::unique_ptr<Vec3> vector) const {
 			vector->x = -(vector->x);
 			vector->y = -(vector->y);
 			vector->z = -(vector->z);
 		}
 
-		auto getMagnitude3D(Vec3* vector) const {
+		real getMagnitude3D(std::shared_ptr<Vec3> vector) {
 			return sqrt(vector->x * vector->x + vector->y * vector->y + vector->z * vector->z);
 		}
 
-		auto toUnitVector(Vec3* vector) { 
+		real toUnitVector(std::shared_ptr<Vec3> vector) { 
 			real magnitude = vector->getMagnitude3D(vector);
-			normalised = true;
+			vector->normalised = true;
 
 			if (magnitude > 0) {
 				vector->x = ((vector->x) / magnitude);
@@ -70,7 +70,7 @@ namespace Vector {
 				vector->x = 0, vector->y = 0, vector->z = 0;
 		}
 
-		auto addScaledVector(Vec3* vector1, Vec3* vector2, const real& scale) {
+		auto addScaledVector(std::unique_ptr<Vec3> vector1, std::unique_ptr<Vec3> vector2, const real& scale) {
 			vector1->x = vector2->x + vector2->x * scale;
 			vector1->y = vector2->x + vector2->y * scale;
 			vector1->z = vector2->z + vector2->z * scale;
@@ -80,29 +80,29 @@ namespace Vector {
 			cout << x << " " << y << " " << z;
 		}
 
-		Vec3 getChangePosVec3(const Vec3* vector1, const Vec3* vector2) {
+		Vec3 getChangePosVec3(const std::unique_ptr<Vec3> vector1, const std::unique_ptr<Vec3> vector2) {
 			return Vec3(fabs(vector1->x - vector2->x), fabs(vector1->y - vector2->x), fabs(vector1->z - vector2->z));
 		}
 
-		 auto scalarProduct(Vec3* vector1, Vec3* vector2) const {
+		 auto scalarProduct(const std::unique_ptr<Vec3> vector1, const std::unique_ptr<Vec3> vector2) const {
 			 return (vector1->x * vector2->x) + (vector1->y * vector2->y) + (vector1->z * vector2->z);
 		}
 
-		 auto crossProduct(Vec3* vector1, Vec3* vector2) const {
+		 auto crossProduct(std::unique_ptr<Vec3> vector1, std::unique_ptr<Vec3> vector2) const {
 			 return (vector1->x * vector2->x) - (vector1->y * vector2->y) - (vector1->z * vector2->z);
 		 }
 
-		 real getTrigonometryScalar(Vec3* vector1,Vec3* vector2 , real& relationalDegree) const {
-			 auto mag1 = getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
+		 real getTrigonometryScalar(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2, real& relationalDegree) const {
+			 auto mag1 = vector1->getMagnitude3D(vector1), mag2 = vector2->getMagnitude3D(vector2);
 			 if (vector1->normalised == true and vector2->normalised == true)
 				 return cos(relationalDegree);
-			 else if (vector1->normalised == true and vector2->normalised == true)
+			 else if (vector1->normalised == true and vector2->normalised == false)
 				 return mag2 * cos(relationalDegree);
 			 return (mag1 * mag2 * cos(relationalDegree));
 		}
 
-		 real getTrigonometryCross(Vec3* vector1, Vec3* vector2, real& relationalDegree) {
-			 auto mag1 = getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
+		 real getTrigonometryCross(const std::shared_ptr<Vec3> vector1, const std::shared_ptr<Vec3> vector2, real& relationalDegree) {
+			 auto mag1 = vector1->getMagnitude3D(vector1), mag2 = getMagnitude3D(vector2);
 			 if (vector1->normalised == true and vector2->normalised == true)
 				 return sin(relationalDegree);
 			 else if (vector1->normalised == true and vector2->normalised == false)
