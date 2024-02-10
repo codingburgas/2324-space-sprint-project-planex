@@ -140,10 +140,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="solar-physics.cpp" />
+    <ClCompile Include="src\solar-physics.cpp" />
+    <ClCompile Include="src\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="vector.h" />
+    <ClInclude Include="src\quanterion.hpp" />
+    <ClInclude Include="src\vector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
