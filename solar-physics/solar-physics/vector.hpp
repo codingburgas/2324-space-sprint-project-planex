@@ -174,7 +174,9 @@ namespace Vector {
 			 
 		 }
 
-
+		 void updatePosition(Vec3& vector, Vec3& velocity, real& time) const {
+			 vector.addScaledVector(&vector, &velocity, time);
+		 }
 	private:
 		real padding;
 	};

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ostream>
-#include "vector.h"
+#include "vector.hpp"
+
 using Vector::Vec3;
 using std::cin, std::cout, std::endl;
 
