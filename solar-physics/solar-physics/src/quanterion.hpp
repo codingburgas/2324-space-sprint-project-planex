@@ -59,11 +59,16 @@ namespace Quanterion {
         Vec4 operator/(const real& scalar) const {
             return Vec4(w / scalar, x / scalar, y / scalar, z / scalar);
         }
-
+        //@brief gets the Magnitude of a quaternion
         real getQuaternionMagnitude(Vec4& q) const;
 
+        //@brief is the quaternion a unit
         bool isUnitQuaternion(Vec4& q) const;
 
+        //@brief get the quaternion normalize
         Vec4 getNormalizeQuaternion(Vec4& q) const;
+
+        static Vec4 createRotationQuaternion(const Vec4& axis, real angle);
+
     };
 }

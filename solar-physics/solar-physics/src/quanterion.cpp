@@ -1,5 +1,3 @@
-#include <cmath>
-#include <iostream>
 #include "quanterion.hpp"
 
 real Quanterion::Vec4::getQuaternionMagnitude(Vec4& q) const {
@@ -13,4 +11,17 @@ bool Quanterion::Vec4::isUnitQuaternion(Vec4& q) const {
 Quanterion::Vec4 Quanterion::Vec4::getNormalizeQuaternion(Vec4& q) const {
     real magnitude = getQuaternionMagnitude(q);
     return Vec4(q.w / magnitude, q.x / magnitude, q.y / magnitude, q.z / magnitude);
+}
+static Quanterion::Vec4 createRotationQuaternion(const Quanterion::Vec4& axis, real angle) {
+    real halfAngle = angle / 2.0;
+    real cosHalfAngle = std::cos(halfAngle);
+    real sinHalfAngle = std::sin(halfAngle);
+
+    Quanterion::Vec4 rotationQuaternion;
+    rotationQuaternion.w = cosHalfAngle;
+    rotationQuaternion.x = sinHalfAngle * axis.x;
+    rotationQuaternion.y = sinHalfAngle * axis.y;
+    rotationQuaternion.z = sinHalfAngle * axis.z;
+
+    return rotationQuaternion;
 }
