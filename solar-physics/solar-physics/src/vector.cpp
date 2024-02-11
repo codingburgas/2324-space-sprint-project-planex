@@ -23,12 +23,6 @@ void Vector::Vec3::toUnitVector(Vec3* vector) {
 		vector->x = 0, vector->y = 0, vector->z = 0;
 }
 
-void Vector::Vec3::addScaledVector(Vec3* vector1, Vec3* vector2, const real& scale) const {
-	vector1->x = vector1->x + (vector2->x * scale);
-	vector1->y = vector1->y + (vector2->y * scale);
-	vector1->z = vector1->z + (vector2->z * scale);
-}
-
 Vector::Vec3 Vector::Vec3::getChangePosVec3(const Vec3* vector1, const Vec3* vector2) const {
 	return Vec3(fabs(vector1->x - vector2->x), fabs(vector1->y - vector2->y), fabs(vector1->z - vector2->z));
 }
@@ -91,7 +85,7 @@ std::vector<Vector::Vec3> Vector::Vec3::orthonormalBasis(Vec3* vector1, Vec3* ve
 	return orthonormalBasis;
 }
 
-auto Vector::Vec3::getVelocity(Vec3* vector1, Vec3* vector2, real& timePassed){
+Vector::Vec3 Vector::Vec3::getVelocity(Vec3* vector1, Vec3* vector2, real& timePassed){
 	auto changedPos = vector1->getChangePosVec3(vector1, vector2);
 	auto& velocity = changedPos;
 
@@ -113,7 +107,7 @@ Vector::Vec3 Vector::Vec3::getAcceleration(Vec3* pos1, Vec3* pos2, real timePass
 }
 
 
-auto Vector::Vec3::getSpeedAndDirection(Vec3* velocity) {
+std::vector<real> Vector::Vec3::getSpeedAndDirection(Vec3* velocity) {
 	auto speed = velocity->getMagnitude3D(velocity);
 	velocity->toUnitVector(velocity);
 	std::vector<real> utils{ velocity->x, velocity->y, velocity->z, speed };
@@ -122,5 +116,5 @@ auto Vector::Vec3::getSpeedAndDirection(Vec3* velocity) {
 
 
 void Vector::Vec3::updatePosition(Vec3& vector, Vec3& velocity, real& time) const {
-	vector.addScaledVector(&vector, &velocity, time);
+	vector.addScaledVector(velocity, time);
 }

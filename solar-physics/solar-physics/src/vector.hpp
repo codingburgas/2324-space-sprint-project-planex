@@ -69,7 +69,12 @@ namespace Vector {
 
 
 		//@brief add scaled vector -> particularly useful for when dealing with speed
-		void addScaledVector(Vec3* vector1, Vec3* vector2, const real& scale) const;
+		void addScaledVector(Vec3& vector, real scale)
+		{
+			this->x += vector.x * scale;
+			this->y += vector.y * scale;
+			this->z += vector.z * scale;
+		}
 
 		void print() const {
 			cout << x << " " << y << " " << z;
@@ -90,9 +95,9 @@ namespace Vector {
 		real getTrigonometryCross(Vec3* vector1, Vec3* vector2, real& relationalDegree);
 		std::vector<Vec3> orthonormalBasis(Vec3* vector1, Vec3* vector2);
 
-		auto getVelocity(Vec3* vector1, Vec3* vector2, real& timePassed);
+		Vec3 getVelocity(Vec3* vector1, Vec3* vector2, real& timePassed);
 		Vec3 getAcceleration(Vec3* pos1, Vec3* pos2, real timePassed, Vec3* startVelocity);
-		auto getSpeedAndDirection(Vec3* velocity);
+		std::vector<real> getSpeedAndDirection(Vec3* velocity);
 
 		void updatePosition(Vec3& vector, Vec3& velocity, real& time) const;
 
