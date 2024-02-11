@@ -1,0 +1,7 @@
+﻿  particles.cpp
+  solar-physics.cpp
+C:\Users\user\Pictures\2324-space-sprint-project-planex\solar-physics\solar-physics\src\solar-physics.cpp(10,27): error C3779: 'Vector::Vec3::getVelocity': a function that returns 'auto' cannot be used before it is defined
+C:\Users\user\Pictures\2324-space-sprint-project-planex\solar-physics\solar-physics\src\vector.hpp(93,8): message : see declaration of 'Vector::Vec3::getVelocity'
+C:\Users\user\Pictures\2324-space-sprint-project-planex\solar-physics\solar-physics\src\solar-physics.cpp(11,23): error C3536: 'velocity': cannot be used before it is initialized
+  vector.cpp
+  Generating Code...

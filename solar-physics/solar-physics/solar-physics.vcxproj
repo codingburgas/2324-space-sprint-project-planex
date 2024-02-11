@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\particles.cpp" />
     <ClCompile Include="src\solar-physics.cpp" />
     <ClCompile Include="src\vector.cpp" />
   </ItemGroup>
