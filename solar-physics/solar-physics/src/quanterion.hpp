@@ -14,8 +14,13 @@ namespace Quanterion {
         real x, y, z, w;
 
         // Constructors
-        Vec4(real r, real i, real j, real k) : w(r), x(i), y(j), z(k) {}
-        Vec4() : w(0.0), x(0.0), y(0.0), z(0.0) {}
+        Vec4(real r, real i, real j, real k) : w(r), x(i), y(j), z(k) {};
+        Vec4() : w(0.0), x(0.0), y(0.0), z(0.0) {};
+
+
+        friend std::ostream& operator<<(std::ostream& os, const Vec4& vec) {
+            return os << "(" << vec.x << ", " << vec.y << ", " << vec.z << vec.w << ", " << ")";
+        }
 
         Vec4 operator*(const Vec4& quaternion) const {
             real qw = this->w * quaternion.w - this->x * quaternion.x - this->y * quaternion.y - this->z * quaternion.z;

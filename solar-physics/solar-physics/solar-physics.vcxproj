@@ -140,11 +140,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\particles.cpp" />
+    <ClCompile Include="src\particle.cpp" />
+    <ClCompile Include="src\quanterion.cpp" />
     <ClCompile Include="src\solar-physics.cpp" />
+    <ClCompile Include="src\utils.cpp" />
     <ClCompile Include="src\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\particle.hpp" />
     <ClInclude Include="src\quanterion.hpp" />
     <ClInclude Include="src\vector.hpp" />
   </ItemGroup>
