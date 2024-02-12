@@ -12,7 +12,7 @@ int main() {
     Vec4 axis = { 0.0, 1.0, 0.0, 0.0 };
     real angle = 3.14 / 2.0;
 
-    Vec4 rotatedPoint = Vec4().rotatePoint(point, axis, angle);
+    Vec4 rotatedPoint = Vec4().rotatePoint(&point, &axis, angle);
 
     std::cout << "("<< point.x << ", " << point.y << ", " << point.z << ")" << std::endl;
     std::cout << "(" << rotatedPoint.x << ", " << rotatedPoint.y << ", " << rotatedPoint.z << ")" << std::endl;

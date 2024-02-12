@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include "vector.hpp"
 
 using std::cin, std::cout, std::endl;
 
@@ -14,8 +15,8 @@ namespace Quanterion {
         real x, y, z, w;
 
         // Constructors
-        Vec4(real r, real i, real j, real k) : w(r), x(i), y(j), z(k) {};
-        Vec4() : w(0.0), x(0.0), y(0.0), z(0.0) {};
+        Vec4(real r, real i, real j, real k) : x(r), y(i), z(j), w(k) {};
+        Vec4() : x(0.0), y(0.0), z(0.0), w(0.0) {};
 
 
         friend std::ostream& operator<<(std::ostream& os, const Vec4& vec) {
@@ -60,21 +61,23 @@ namespace Quanterion {
             return Vec4(w / scalar, x / scalar, y / scalar, z / scalar);
         }
         //@brief gets the Magnitude of a quaternion
-        real getQuaternionMagnitude(Vec4& q) const;
+        real getQuaternionMagnitude(Vec4* q) const;
 
         //@brief is the quaternion a unit
-        bool isUnitQuaternion(Vec4& q) const;
+        bool isUnitQuaternion(Vec4* q) const;
 
         //@brief get the quaternion normalize
-        Vec4 getNormalizeQuaternion(Vec4& q) const;
+        Vec4 getNormalizeQuaternion(Vec4* q) const;
 
-        Vec4 rotateByQuaternion(const Quanterion::Vec4& quaternion) const;
+        Vec4 rotateByQuaternion(const Quanterion::Vec4* quaternion) const;
 
-        Vec4 rotateByQuaternion(const Vec4& angularVelocity, real deltaTime) const;
+        Vec4 rotateByQuaternion(const Vec4* angularVelocity, const real& deltaTime) const;
 
-        Vec4 getInverseQuaternion(const Vec4 & q) const;
+        Vec4 getInverseQuaternion(const Vec4* q) const;
 
-        Vec4 rotatePoint(const Vec4 & point, const Vec4 & axis, real angle) const;
+        Vec4 rotatePoint(const Vec4* point, const Vec4* axis, const real& angle) const;
+        Vec4 quanterionFromAxisAngle(const Vector::Vec3* axis, const real& angle) const;
+        Vector::Vec3 rotatePoint(const Vector::Vec3* point, const Vector::Vec3* axis, const real& angle);
 
     };
 }
