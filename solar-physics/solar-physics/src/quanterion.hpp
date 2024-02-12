@@ -8,6 +8,7 @@
 
 using std::cin, std::cout, std::endl;
 
+
 namespace Quanterion {
     class Vec4 {
 

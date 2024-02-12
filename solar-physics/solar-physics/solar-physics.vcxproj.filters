@@ -27,7 +27,7 @@
     <ClCompile Include="src\quanterion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils.cpp">
+    <ClCompile Include="src\utils.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
