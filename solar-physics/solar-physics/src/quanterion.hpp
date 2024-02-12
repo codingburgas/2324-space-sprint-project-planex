@@ -68,7 +68,11 @@ namespace Quanterion {
         //@brief get the quaternion normalize
         Vec4 getNormalizeQuaternion(Vec4& q) const;
 
-        static Vec4 createRotationQuaternion(const Vec4& axis, real angle);
+        Vec4 createRotationQuaternion(const Vec4& axis, real angle);
+
+        Vec4 getInverseQuaternion(const Vec4& q) const;
+
+        Vec4 rotatePoint(const Vec4& point, const Vec4& axis, double angle) const;
 
     };
 }

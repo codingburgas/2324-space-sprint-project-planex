@@ -8,10 +8,15 @@ using Quanterion::Vec4;
 using std::cin, std::cout, std::endl;
 
 int main() {
-    Vec4 q1(1, 2, 3, 4);
-    Vec4 q2(3, 4, 5, 4);
-    Vec4 result = q1 * q2;
-    Vec4 result2 = q2 * q1;
+    Vec4 point = { 0.0, 1.0, 0.0, 0.0 };
+    Vec4 axis = { 0.0, 1.0, 0.0, 0.0 };
 
-    cout << result << " " << result2;
+    real pi = 3.14;
+    real angle = pi / 2.0;
+
+    Vec4 rotatedPoint = point.rotatePoint(point, axis, angle);
+
+    std::cout << "Original Point: (" << point.x << ", " << point.y << ", " << point.z << ")" << std::endl;
+    std::cout << "Rotated Point: (" << rotatedPoint.x << ", " << rotatedPoint.y << ", " << rotatedPoint.z << ")" << std::endl;
+
 }
