@@ -36,9 +36,9 @@ void Particle::Particle::updateVelocity(real& time) {
 }
 
 void Particle::Particle::clearForces() {
-	this->forceAccum->x * 0;
-	this->forceAccum->y * 0;
-	this->forceAccum->z * 0;
+	this->forceAccum->x *= 0;
+	this->forceAccum->y *= 0;
+	this->forceAccum->z *= 0;
 }
 
 void Particle::Particle::addForce(Vector::Vec3* vector) {

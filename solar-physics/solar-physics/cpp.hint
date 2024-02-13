@@ -3,3 +3,5 @@
 // For more information see https://go.microsoft.com/fwlink/?linkid=865984
 #define real
 #define fake
+#define DECLSPEC_ALLOCATOR
+#define DECLSPEC_ALLOCATOR __declspec(allocator)

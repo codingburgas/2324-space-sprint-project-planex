@@ -1,25 +1,30 @@
 #include <cmath>
 #include <iostream>
 #include "windows.h"
-#define MATH_PI 3.14159
-#define ARENA_SIZE 1024 //1mb
+#include <array>
 #define buffer_var size_t
 
 
 //@brief -> class which includes a memory arena, and useful math definitions
 
-namespace Utils {
+namespace Utils {	
 	class Memory {
 	public:
 
-		DWORD flags[5] = { HEAP_GENERATE_EXCEPTIONS, HEAP_NO_SERIALIZE, HEAP_ZERO_MEMORY, HEAP_CREATE_ENABLE_TRACING };
-		DWORD configDefault = flags[0] | flags[1] | flags[2] | flags[3];
+		static constexpr double MATH_PI = 3.14159;
+		static constexpr int DEFAULT_SIZE = 1024;
+		static constexpr buffer_var MAX_SIZE_DEFAULT = 256 * 1000;
+
+		std::array<DWORD,4> flags = { HEAP_GENERATE_EXCEPTIONS, HEAP_NO_SERIALIZE, HEAP_ZERO_MEMORY, HEAP_CREATE_ENABLE_TRACING };
+		DWORD config = flags[0] | flags[1] | flags[2] | flags[3];
+
+		HANDLE HEAP;
 
 		Memory(buffer_var size) : size(size), move(0) {
 			block = new char[size];
 		};
 
-		Memory() : size(0), move(0) {};
+		Memory() : size(DEFAULT_SIZE), move(0) {};
 
 		~Memory() {
 			delete block;
@@ -34,10 +39,11 @@ namespace Utils {
 		}
 
 
-		void* allocate(buffer_var size) {
-			HEAP = HeapCreate(configDefault, size, size);
-			return &HEAP;
-		}
+		HANDLE createHeapObject(Utils::Memory& instance, const buffer_var* size) const;
+		DECLSPEC_ALLOCATOR LPVOID allocate(Utils::Memory& instance, const buffer_var* size) const;
+		auto destroyHeapObject(HANDLE& HEAP) const;
+		auto deallocate(Utils::Memory& instance) const;
+		
 
 	protected:
 
@@ -47,20 +53,7 @@ namespace Utils {
 		Memory(const Memory&) = delete;
 		Memory& operator=(const Memory&) = delete;
 
-		HANDLE HEAP;
 
-	};
-
-	class operatorOverload {
-		void* operator new(size_t size) {
-			return obj.allocate(size);
-		}
-
-		void operator delete(void* target) {
-			//implement here
-		}
-	private:
-		static Utils::Memory obj;
 	};
 
 }

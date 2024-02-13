@@ -11,6 +11,8 @@ using std::cin, std::cout, std::endl;
 int main() {
 
     Utils::Memory obj(1024);
-    std::cout << obj.allocate(24);
+   
+    auto res = obj.allocate(24, &obj);
+    std::cout << res;
     
 }
