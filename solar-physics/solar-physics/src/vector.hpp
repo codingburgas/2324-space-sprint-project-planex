@@ -99,7 +99,7 @@ namespace Vector {
 		Vec3 getAcceleration(Vec3* pos1, Vec3* pos2, real timePassed, Vec3* startVelocity);
 		std::vector<real> getSpeedAndDirection(Vec3* velocity);
 
-		void updatePosition(Vec3& vector, Vec3& velocity, real& time) const;
+		void updatePosition(Vec3* vector, Vec3* velocity, real& time) const;
 
 		
 	private:

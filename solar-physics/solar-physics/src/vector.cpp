@@ -36,9 +36,10 @@ Vector::Vec3 Vector::Vec3::crossProduct(Vec3* vector1, Vec3* vector2) const {
 	real* x = new real((vector1->y * vector2->z) - (vector1->z * vector2->y));
 	real* y = new real((vector1->z * vector2->x) - (vector1->x * vector2->z));
 	real* z = new real((vector1->x * vector2->y) - (vector1->y * vector2->x));
-
-	return Vec3(*x, *y, *z);
+	Vec3 res(*x, *y, *z);
 	delete x, y, z;
+
+	return res;
 
 }
 
@@ -115,6 +116,6 @@ std::vector<real> Vector::Vec3::getSpeedAndDirection(Vec3* velocity) {
 }
 
 
-void Vector::Vec3::updatePosition(Vec3& vector, Vec3& velocity, real& time) const {
-	vector.addScaledVector(velocity, time);
+void Vector::Vec3::updatePosition(Vec3* vector, Vec3* velocity, real& time) const {
+	vector->addScaledVector(*velocity, time);
 }
