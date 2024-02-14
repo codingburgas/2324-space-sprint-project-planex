@@ -11,8 +11,7 @@ using std::cin, std::cout, std::endl;
 int main() {
 
     Utils::Memory obj(1024);
-   
-    auto res = obj.allocate(24, &obj);
-    std::cout << res;
+    const buffer_var size = 24;
+    std::cout << obj.createHeapObject(obj, &size);
     
 }
