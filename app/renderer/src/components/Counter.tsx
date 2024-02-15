@@ -13,7 +13,7 @@ const CombinedComponent = () => {
   const [loadingColor, setLoadingColor] = createSignal(initialBG);
 
   const interval = setInterval(() => {
-    setProgress((prev) => (prev < 100 ? prev + 50 : 100));
+    setProgress((prev) => (prev < 100 ? prev + 5 : 100));
   }, 500);
 
   onCleanup(() => clearInterval(interval));
@@ -23,7 +23,7 @@ const CombinedComponent = () => {
       setLoadingColor(progress() >= 33 && progress() < 66 ? yellowBG : greenBG);
     
     if (progress() === 100) 
-      window.location.href = "http://localhost:3000/sandbox"
+      window.location.href = "http://localhost:3000/solar"
   });
 
   onMount(() => {
