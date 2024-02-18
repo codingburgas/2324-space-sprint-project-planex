@@ -66,6 +66,7 @@
 <a href="https://www.microsoft.com/en/microsoft-teams/group-chat-software"><img src="https://img.icons8.com/fluency/48/microsoft-teams-2019.png" alt = "MS Teams logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/48/microsoft-word-2019--v2.png" alt="MS Word logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>
+<a href="https://vitejs.dev/"><img src="Images/physics-engine.png" alt="vite" width=70px height="45" /></a>
 </p>
 
 <hr>
