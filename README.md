@@ -28,6 +28,7 @@
 <a href="https://git-scm.com/"><img width="48" height="48" src="https://img.icons8.com/color/48/git.png" alt="git"/> </a>
 <a href="https://nodejs.org/en"><img width="48" height="48" src="Images/google-cloud.svg" alt="solid"/></a>
 <a href="https://nodejs.org/en"><img width="120" height="45" src="Images/jetbrains.svg" alt="solid"/></a>
+<a href="https://nodejs.org/en"><img width="130" height="45" src="Images/Sentry.svg" alt="solid"/></a>
 </p>
 
 ### Used tools for the visual elements:
@@ -43,29 +44,28 @@
 ### Used technologies for development:
 <p align="left gap="10px">
     <a href="https://cplusplus.com/"><img width="48" height="48" src="https://img.icons8.com/fluency/48/c-plus-plus-logo.png" alt="c-plus-plus-logo"/></a>
-    <a href="https://cplusplus.com/"><img width="68" height="48" src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Opengl-logo.svg" alt="c-plus-plus-logo"/></a>
-    <a href="https://cplusplus.com/"><img width="68" height="48" src="Images/gcp.svg" alt="c-plus-plus-logo"/></a>
     <a href="https://cplusplus.com/"><img width="60" height="48" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg" alt="c-plus-plus-logo"/></a>
     <a href="https://www.typescriptlang.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" alt="Typescript logo" width=50px /></a>
     <a href="https://www.electronjs.org/"> <img width="48" height="48" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/electron-icon.png" alt="Electron"></a>
     <a href="https://astro.build/"> <img width="48" height="45" alt="astro" src="Images/astro-icon-light-gradient.svg"></a>
     <a href="https://tailwindcss.com/"> <img width="48" height="48" src="Images/solid.svg" alt="tailwind_css" alt="Tailwind"/>
-    <a href="https://reactjs.org/docs/getting-started.html"><img src="https://img.icons8.com/color/344/react-native.png" alt="react" width=48px /></a>
     <a href="https://nodejs.org/en/"><img src="https://raw.githubusercontent.com/TypeStrong/ts-node/HEAD/logo.svg?sanitize=true" alt="nodejs" width="130px" height="50px"/></a>
     <a href="https://threejs.org/"><img src="https://global.discourse-cdn.com/standard17/uploads/threejs/original/2X/e/e4f86d2200d2d35c30f7b1494e96b9595ebc2751.png" alt="three js" width=48px /></a>
     <a href="https://tailwindcss.com/"> <img width="48" height="48" src="https://img.icons8.com/fluency/48/tailwind_css.png" alt="tailwind_css" alt="Tailwind"/>
+    <a href="https://sass-lang.com/"><img src="Images/headless-ui.svg" alt="SASS logo" width=44px /></a>
     <a href="https://sass-lang.com/"><img src="https://img.icons8.com/color/344/sass.png" alt="SASS logo" width=48px /></a>
-    <a href="https://tailwindcss.com/"> <img width="54" height="48" src="Images/htmx.svg" alt="tailwind_css" alt="Tailwind"/></a>
     <a href="https://vitejs.dev/"><img src="https://vitejs.dev/logo.svg" alt="vite" width=48px /></a>
-    <a href="https://vitejs.dev/"><img src="Images/web-socket.svg" alt="vite" width=50px height="45" /></a>
+    <a href="https://vitejs.dev/"><img src="Images/socketio-icon.svg" alt="vite" width=50px height="45" /></a>
+    <a href="https://vitejs.dev/"><img src="Images/web-socket.svg" alt="vite" width=48px height="45" /></a>
 </p>
 
 ### Used tools for our documentation, presentation & communication:
 <p align="left">
-<a href="https://www.microsoft.com/en/microsoft-teams/group-chat-software"><img src="https://img.icons8.com/color/344/microsoft-teams.png" alt = "MS Teams logo" width=48px /></a>
-<a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/344/ms-word.png" alt="MS Word logo" width=48px /></a>
+ <a href="https://www.doxygen.nl/"><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/6ac1857f-f453-48fa-b3b9-4033de693b17/dbd0jys-fde5ad33-8c95-4dea-83fc-56c72aea2eb1.png" alt="Doxygen logo" width=42px /></a>
+    <a href="https://www.gitbook.com/"><img src="https://cdn.discordapp.com/attachments/878701034430672897/1040701411962409031/RFSGYvg_1.png" alt="GitBook logo" width=58px /></a>
+<a href="https://www.microsoft.com/en/microsoft-teams/group-chat-software"><img src="https://img.icons8.com/fluency/48/microsoft-teams-2019.png" alt = "MS Teams logo" width=48px /></a>
+<a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/48/microsoft-word-2019--v2.png" alt="MS Word logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>
-<a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="Images/onenote.svg" alt="MS PowerPoint logo" width=45px height="45" /></a>
 </p>
 
 <hr>
@@ -76,9 +76,10 @@
 
 - [Documentation]()
 - [Presentation]()
+- [Doxygen]()
+- [Gitbook]()
 
 <hr>
-
 ## 📥 Installation
 <p>First you have to clone our project <b>(Node >= 18.6.0 && Some sort of an IDE (e.g visual studio) )</b>: </p>
 <pre>git clone https://github.com/codingburgas/2324-space-sprint-project-planex.git</pre>
