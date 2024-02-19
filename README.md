@@ -28,7 +28,6 @@
 <a href="https://git-scm.com/"><img width="48" height="48" src="https://img.icons8.com/color/48/git.png" alt="git"/> </a>
 <a href="https://nodejs.org/en"><img width="48" height="48" src="Images/google-cloud.svg" alt="solid"/></a>
 <a href="https://nodejs.org/en"><img width="120" height="45" src="Images/jetbrains.svg" alt="solid"/></a>
-<a href="https://nodejs.org/en"><img width="130" height="45" src="Images/Sentry.svg" alt="solid"/></a>
 </p>
 
 ### Used tools for the visual elements:
@@ -61,14 +60,22 @@
 
 ### Used tools for our documentation, presentation & communication:
 <p align="left">
- <a href="https://www.doxygen.nl/"><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/6ac1857f-f453-48fa-b3b9-4033de693b17/dbd0jys-fde5ad33-8c95-4dea-83fc-56c72aea2eb1.png" alt="Doxygen logo" width=42px /></a>
-    <a href="https://www.gitbook.com/"><img src="https://cdn.discordapp.com/attachments/878701034430672897/1040701411962409031/RFSGYvg_1.png" alt="GitBook logo" width=58px /></a>
+<a href="https://www.doxygen.nl/"><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/6ac1857f-f453-48fa-b3b9-4033de693b17/dbd0jys-fde5ad33-8c95-4dea-83fc-56c72aea2eb1.png" alt="Doxygen logo" width=42px /></a>
+<a href="https://www.gitbook.com/"><img src="https://cdn.discordapp.com/attachments/878701034430672897/1040701411962409031/RFSGYvg_1.png" alt="GitBook logo" width=58px /></a>
 <a href="https://www.microsoft.com/en/microsoft-teams/group-chat-software"><img src="https://img.icons8.com/fluency/48/microsoft-teams-2019.png" alt = "MS Teams logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/48/microsoft-word-2019--v2.png" alt="MS Word logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>
 </p>
 
+### Used tools for code testing & assurance:
+<p align="left" gap="10px">
+<a href="https://www.python.org/"><img width="45px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png"/></a>
+<a href="https://nodejs.org/en"><img width="140" height="45" src="Images/Sentry.svg" alt="solid"/></a>    
+</p>
+
+
 <hr>
+
 
 ## 📄 Documents
 
@@ -78,9 +85,12 @@
 - [Presentation]()
 - [Doxygen]()
 - [Gitbook]()
-
 <hr>
+
+
 ## 📥 Installation
+<br>
+
 <p>First you have to clone our project <b>(Node >= 18.6.0 && Some sort of an IDE (e.g visual studio) )</b>: </p>
 <pre>git clone https://github.com/codingburgas/2324-space-sprint-project-planex.git</pre>
 <br>
@@ -121,4 +131,4 @@ npm run start
 
 
 
-<h1 align="center">Thanks for checking out our repo, show us some ❤️ by giving our repo a ⭐️!</h1>
+<h1 align="center">Made with ❤️ (gtest <3)</h1>
