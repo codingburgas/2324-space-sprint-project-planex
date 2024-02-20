@@ -29,13 +29,10 @@ int main() {
         // Receive data from clients
         for (size_t i = 0; i < 5; i++)
         {
-            if (socket.receive(buffer, sizeof(buffer), received, sender, senderPort) != sf::Socket::Done) {
-                cerr << "Failed to receive data from client" << std::endl;
-            }
-            else {
-                buffer[received] = '\0'; // Null-terminate the received data
-                cout << "Received: " << buffer << std::endl;
-            }
+            socket.receive(buffer, sizeof(buffer), received, sender, senderPort);
+            buffer[received] = '\0'; // Null-terminate the received data4
+            cout << "Received: " << buffer << std::endl;
+            
         }
         // Send data to the client
         for (size_t i = 0; i < 5; i++)
@@ -43,9 +40,8 @@ int main() {
             cout << "Enter message to send to client: ";
             std::getline(std::cin, message);
 
-            if (socket.send(message.c_str(), message.size() + 1, sender, senderPort) != sf::Socket::Done) {
-                cerr << "Failed to send data to client" << std::endl;
-            }
+            socket.send(message.c_str(), message.size() + 1, sender, senderPort);
+
         }
     }
 
