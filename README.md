@@ -7,7 +7,7 @@
 <br>
 
 ## 💻 About
-<p align="center">This is our take on the 2024 9th grade project about "Physics and Astrology". It's an app which contains interactive solar system and useful information.
+<p align="center">This is our take on the 2024 9th grade project about "Physics and Astrology". It's a sandbox app, containing the Solar System, with a tailored physics engine <b>you</b> can play with.
 </p>
 <p align="center">
 
@@ -65,10 +65,9 @@
 <a href="https://www.microsoft.com/en/microsoft-teams/group-chat-software"><img src="https://img.icons8.com/fluency/48/microsoft-teams-2019.png" alt = "MS Teams logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/48/microsoft-word-2019--v2.png" alt="MS Word logo" width=48px /></a>
 <a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>
-<a href="https://vitejs.dev/"><img src="Images/physics-engine.png" alt="vite" width=70px height="45" /></a>
 </p>
 
-### Used tools for code testing & assurance:
+### Used tools for code testing & overhead:
 <p align="left" gap="10px">
 <a href="https://www.python.org/"><img width="45px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png"/></a>
 <a href="https://nodejs.org/en"><img width="140" height="45" src="Images/Sentry.svg" alt="solid"/></a>    
@@ -86,13 +85,22 @@
 - [Presentation]()
 - [Doxygen]()
 - [Gitbook]()
+
+<br>
+
+### REQUIREMENTS:
+- 8GB+ RAM (rough estimate for now)
+- NodeJS 18.4.1+
+- Python 3.7+ (**OPTIONAL** - when testing websocket client -> server connection **(CAN VARY)** )
+- SSE4a/4.2 CPU
+
 <hr>
 
 
 ## 📥 Installation
 <br>
 
-<p>First you have to clone our project <b>(Node >= 18.6.0 && Some sort of an IDE (e.g visual studio) )</b>: </p>
+<p>First you have to clone our project <b>( Some sort of an IDE (e.g visual studio) )</b>: </p>
 <pre>git clone https://github.com/codingburgas/2324-space-sprint-project-planex.git</pre>
 <br>
 <p>Open it in your favourite code editor or IDE, build a new terminal and <b>type the following to start the frontend server: </b> </p>
