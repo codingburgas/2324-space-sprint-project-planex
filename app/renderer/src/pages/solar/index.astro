@@ -1,9 +1,9 @@
 ---
 import Titlebar from "../../components/Titlebar"
-import Test from "../../solar-components/solar.jsx"
+import App from "../../solar-components/solar.jsx"
 ---
 
-<html lang="en">
+<html lang="en" class="h-screen w-screen">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -25,10 +25,10 @@ import Test from "../../solar-components/solar.jsx"
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
     </style>
   </head>
-  <body>
+  <body class="h-screen w-screen flex flex-col flex-grow">
     <Titlebar client:load />
-    <Test />
-    <main>
+    <main id = "root" class="flex-grow">
+      <App client:only="react" />
     </main>
   </body>
 </html>

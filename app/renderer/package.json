@@ -16,6 +16,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
+    "@types/three": "^0.161.2",
     "astro": "^4.3.2",
     "random-js": "^2.1.0",
     "react": "^18.2.0",
@@ -26,6 +27,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@react-three/fiber": "^8.15.16",
     "aos": "^2.3.4",
     "fs-extra": "^11.2.0",
     "uuid": "^9.0.1"

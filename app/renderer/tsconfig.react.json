@@ -5,6 +5,6 @@
       "jsxImportSource": "react"
     },
     "include": [
-      "src/solar-components/**/*.jsx"
+      "src/solar-components/**/*.tsx"
     ]
   }
