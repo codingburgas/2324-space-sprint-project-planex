@@ -20,7 +20,8 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
     }
 
     try {
-        s->send(hdl, msg->get_payload(), msg->get_opcode());
+        std::string data = "deez";
+        s->send(hdl, data, msg->get_opcode());
     }
     catch (websocketpp::exception const& e) {
         std::cout << "Echo failed because: "

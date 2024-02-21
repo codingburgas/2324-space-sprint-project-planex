@@ -17,3 +17,8 @@ function askForMessage() {
 }
 askForMessage();
 });
+
+
+ws.on('message', function message(data) {
+  console.log('received: %s', data);
+});
