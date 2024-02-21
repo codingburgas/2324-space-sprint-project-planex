@@ -1,0 +1,16 @@
+﻿  client.cpp
+C:\Users\pomelo\Desktop\Projects\atmos-adventure\2324-space-sprint-project-planex\client\include\websocketpp\frame.hpp(834,13): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+  (compiling source file 'client.cpp')
+  
+C:\Users\pomelo\Desktop\Projects\atmos-adventure\2324-space-sprint-project-planex\client\include\websocketpp\common\md5.hpp(367,29): warning C4267: '+=': conversion from 'size_t' to 'websocketpp::md5::md5_word_t', possible loss of data
+  (compiling source file 'client.cpp')
+  
+C:\Users\pomelo\Desktop\Projects\atmos-adventure\2324-space-sprint-project-planex\client\include\websocketpp\sha1\sha1.hpp(176,24): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'client.cpp')
+  
+  Generating code
+  3 of 5876 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  client.vcxproj -> C:\Users\pomelo\Desktop\Projects\atmos-adventure\2324-space-sprint-project-planex\client\x64\Release\client.exe
