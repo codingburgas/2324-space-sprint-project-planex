@@ -49,6 +49,7 @@
     <a href="https://astro.build/"> <img width="48" height="45" alt="astro" src="Images/astro-icon-light-gradient.svg"></a>
     <a href="https://tailwindcss.com/"> <img width="48" height="48" src="Images/solid.svg" alt="tailwind_css" alt="Tailwind"/>
     <a href="https://nodejs.org/en/"><img src="https://raw.githubusercontent.com/TypeStrong/ts-node/HEAD/logo.svg?sanitize=true" alt="nodejs" width="130px" height="50px"/></a>
+     <a href="https://reactjs.org/docs/getting-started.html"><img src="https://img.icons8.com/color/344/react-native.png" alt="react" width=48px /></a>
     <a href="https://threejs.org/"><img src="https://global.discourse-cdn.com/standard17/uploads/threejs/original/2X/e/e4f86d2200d2d35c30f7b1494e96b9595ebc2751.png" alt="three js" width=48px /></a>
     <a href="https://tailwindcss.com/"> <img width="48" height="48" src="https://img.icons8.com/fluency/48/tailwind_css.png" alt="tailwind_css" alt="Tailwind"/>
     <a href="https://sass-lang.com/"><img src="Images/headless-ui.svg" alt="SASS logo" width=44px /></a>

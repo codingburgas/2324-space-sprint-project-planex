@@ -9,15 +9,14 @@
 #define MATH_PI 3.1415926
 
 
-//@brief -> class which includes a memory arena, and useful math definitions
+//@brief -> class which includes a memory arena/custom malloc and new overload, and useful math definitions
 
 namespace Utils {	
 
 	class Memory {
 	public:
 
-		static constexpr int DEFAULT_SIZE = 1024;
-		static constexpr buffer_var MAX_SIZE_DEFAULT = 256 * 1000;
+		static constexpr int DEFAULT_SIZE = MAX_SIZE_DEFAULT;
 		buffer_var size, move, byttesWritten;
 
 		std::array<DWORD, 4> flags = { MEMORY_FLAGS_CONFIG };
@@ -57,21 +56,6 @@ namespace Utils {
 		Memory(const Memory&) = delete;
 		Memory& operator=(const Memory&) = delete;
 
-
-	};
-
-
-	class Network {
-
-	public:
-
-		sf::UdpSocket socket;
-		unsigned short port = CLIENT_PORT, senderPort;
-		size_t recieved;
-		sf::IpAddress senderIP;
-		char buffer[1024];
-
-		auto recieve(Network* instance) const;
 
 	};
 
