@@ -75,7 +75,6 @@ googlemock/gtest
 /googlemock/gmock.sln
 /googlemock/ALL_BUILD.vcxproj.filters
 /googlemock/ALL_BUILD.vcxproj
-/lib
 /Win32
 /ZERO_CHECK.vcxproj.filters
 /ZERO_CHECK.vcxproj
