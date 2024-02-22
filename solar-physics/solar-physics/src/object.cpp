@@ -1,14 +1,8 @@
 #include "Object.hpp"
 
-Object::Object() {
-    orientation = Quaternion(1.0, 0.0, 0.0, 0.0);
-    position = Vector::Vec3(0.0, 0.0, 0.0);
-    updateTransformMatrix();
-}
+Object::Object() : orientation(Quaternion::identity()), position(Vector::Vec3()), transformMatrix(Matrix::Matrix3x4()) {}
 
-Object::~Object() {
-
-}
+Object::~Object() {}
 
 void Object::setOrientation(const Quaternion& q) {
     orientation = q;
@@ -33,9 +27,44 @@ void Object::updateTransformMatrix() {
 }
 
 Vector::Vec3 Object::localToWorld(const Vector::Vec3& local) const {
-    return transformMatrix.transform(local);
+    return transformMatrix.localToWorld(local);
 }
 
 Vector::Vec3 Object::worldToLocal(const Vector::Vec3& world) const {
-    return transformMatrix.transformInverse(world);
+    return transformMatrix.worldToLocal(world);
 }
+
+void Object::transformDirection(const Vector::Vec3& direction) {
+    Vector::Vec3 localDir = worldToLocal(direction);
+    Quaternion rotatedDir = orientation * Quaternion(0, localDir.x, localDir.y, localDir.z) * orientation.inverse();
+    direction = Vector::Vec3(rotatedDir.i, rotatedDir.j, rotatedDir.k);
+}
+
+void Object::transformInverseDirection(const Vector::Vec3& direction) {
+    Vector::Vec3 localDir = localToWorld(direction);
+    Quaternion rotatedDir = orientation.inverse() * Quaternion(0, localDir.x, localDir.y, localDir.z) * orientation;
+    direction = Vector::Vec3(rotatedDir.i, rotatedDir.j, rotatedDir.k);
+}
+
+void Object::translate(const Vector::Vec3& translation) {
+    position += translation;
+    updateTransformMatrix();
+}
+
+void Object::rotate(const Quaternion& rotation) {
+    orientation = rotation * orientation;
+    orientation.normalize();
+    updateTransformMatrix();
+}
+
+void Object::rotateAround(const Vector::Vec3& axis, real angle) {
+    Quaternion rotation(axis, angle);
+    rotate(rotation);
+}
+
+void Object::scale(const Vector::Vec3& scaling) {
+    transformMatrix.scale(scaling);
+}
+
+-+
+
