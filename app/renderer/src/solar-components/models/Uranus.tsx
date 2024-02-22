@@ -47,7 +47,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
           <group name="f029815b00e641df84e4fa9461089ab2fbx" rotation={[Math.PI / 2, 0, 0]} scale={1}>
             <group name="Object_2">
               <group name="RootNode">
-                <group name="uranus" position={[5, 5, 5]} rotation={[-0.818, 1.177, 0.869]} scale={1}>
+                <group name="uranus" position={[-110, 5, 0]} rotation={[-0.818, 1.177, 0.869]} scale={1}>
                   <group name="rings">
                     <mesh name="rings_lambert3_0" geometry={nodes.rings_lambert3_0.geometry} material={materials.lambert3} />
                     <mesh name="rings_lambert4_0" geometry={nodes.rings_lambert4_0.geometry} material={materials.lambert4} />

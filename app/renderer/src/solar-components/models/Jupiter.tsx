@@ -30,7 +30,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/jupiter.glb') as GLTFResult;
 
   // Set the desired position for the model
-  const position = [10, 5, 0];
+  const position = [-50, 5, 0];
 
   return (
     <group {...props} dispose={null} position={position}>

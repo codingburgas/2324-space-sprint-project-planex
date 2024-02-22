@@ -37,7 +37,7 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/earth.glb') as GLTFResult
   return (
-    <group {...props} dispose={null} position={[10,5,10]}>
+    <group {...props} dispose={null} position={[10,5,0]}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <mesh geometry={nodes.Object_2.geometry} material={materials.heightmap_ref_group} />
         <mesh geometry={nodes.Object_3.geometry} material={materials.heightmap_ref_group} />

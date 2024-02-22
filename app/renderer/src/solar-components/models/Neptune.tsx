@@ -30,7 +30,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/neptune.glb') as GLTFResult;
 
   // Set the desired position for the mesh
-  const position = [5, 5, 0];
+  const position = [-140, 5, -1];
 
   return (
     <group {...props} dispose={null}>

@@ -27,8 +27,8 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/venus.glb') as GLTFResult
   return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_2.geometry} material={materials.moon} rotation={[-Math.PI / 2, 0, 0]} />
+    <group {...props} dispose={null} >
+      <mesh geometry={nodes.Object_2.geometry} material={materials.moon} rotation={[-Math.PI / 2, 0, 0]} position = {[40, 5, -1]} />
     </group>
   )
 }
