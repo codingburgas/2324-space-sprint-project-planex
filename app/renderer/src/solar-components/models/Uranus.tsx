@@ -38,16 +38,16 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
-  const { nodes, materials, animations } = useGLTF('../../../public/sun.glb') as GLTFResult
+  const { nodes, materials, animations } = useGLTF('../../../public/uranus.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
-          <group name="f029815b00e641df84e4fa9461089ab2fbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+          <group name="f029815b00e641df84e4fa9461089ab2fbx" rotation={[Math.PI / 2, 0, 0]} scale={1}>
             <group name="Object_2">
               <group name="RootNode">
-                <group name="uranus" position={[-1312.793, 0.013, 1294443.875]} rotation={[-0.818, 1.177, 0.869]} scale={1000}>
+                <group name="uranus" position={[5, 5, 5]} rotation={[-0.818, 1.177, 0.869]} scale={1}>
                   <group name="rings">
                     <mesh name="rings_lambert3_0" geometry={nodes.rings_lambert3_0.geometry} material={materials.lambert3} />
                     <mesh name="rings_lambert4_0" geometry={nodes.rings_lambert4_0.geometry} material={materials.lambert4} />
@@ -65,4 +65,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('../../../public/uranus.glb')
+useGLTF.preload('../../../public/uranus.glb');
