@@ -44,6 +44,7 @@ export default function App() {
         <Mercury />
         <Mars />
         <Uranus />
+        <Jupiter />
       </Canvas>
     </div>
   );

@@ -7,34 +7,40 @@ Source: https://sketchfab.com/3d-models/realistic-jupiter-993ba62a539e4c308e9e31
 Title: Realistic Jupiter
 */
 
-import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import type { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import React from 'react';
+import { useGLTF } from '@react-three/drei';
+import type { GLTF } from 'three-stdlib';
+
+type GLTFAction = any; // Assuming GLTFAction is not defined in your code snippet
 
 type GLTFResult = GLTF & {
   nodes: {
-    Sphere_Material_0: THREE.Mesh
-  }
+    Sphere_Material_0: THREE.Mesh;
+  };
   materials: {
-    Material: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
+    Material: THREE.MeshStandardMaterial;
+  };
+  animations: GLTFAction[];
+};
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>;
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/jupiter.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('../../../public/jupiter.glb') as GLTFResult;
+
+  // Set the desired position for the model
+  const position = [10, 5, 0];
+
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} position={position}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <mesh geometry={nodes.Sphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={1} />
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('../../../public/jupiter.glb')
+useGLTF.preload('../../../public/jupiter.glb');
