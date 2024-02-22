@@ -35,4 +35,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('../../../mercury.glb')
+useGLTF.preload('../../../public/mercury.glb')

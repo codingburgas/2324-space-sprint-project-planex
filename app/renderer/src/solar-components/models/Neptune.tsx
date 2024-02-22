@@ -32,4 +32,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('../../../neptune.glb')
+useGLTF.preload('../../../public/neptune.glb')

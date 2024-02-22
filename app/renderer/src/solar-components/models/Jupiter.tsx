@@ -30,11 +30,11 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <mesh geometry={nodes.Sphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={101} />
+          <mesh geometry={nodes.Sphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={1} />
         </group>
       </group>
     </group>
   )
 }
 
-useGLTF.preload('../../../jupiter.glb')
+useGLTF.preload('../../../public/jupiter.glb')

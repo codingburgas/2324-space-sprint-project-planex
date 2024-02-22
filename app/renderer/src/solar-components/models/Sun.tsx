@@ -33,4 +33,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('../../../sun.glb')
+useGLTF.preload('../../../public/sun.glb')

@@ -27,7 +27,7 @@ import App from "../../solar-components/solar"
       <Titlebar client:load />
     </div>
     <main id = "root" class="flex-grow">
-      <App />
-    </main>
+      <App client:only="react" />
+    </main >
   </body>
 </html>

@@ -65,4 +65,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('../../../uranus.glb')
+useGLTF.preload('../../../public/uranus.glb')
