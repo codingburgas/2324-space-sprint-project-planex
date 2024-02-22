@@ -4,9 +4,8 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
-#include "vector.hpp"
-
-using std::cin, std::cout, std::endl;
+#include "Quaternion.hpp"
+#include "Vector.hpp"
 
 namespace Matrix {
 
@@ -19,12 +18,22 @@ namespace Matrix {
                 data[i] = 0;
         }
 
-        void orientationAndPosition(const Quanterion::Vec4& q, const Vector::Vec3& pos);
+        void orientationAndPosition(const Quaternion::Vec4& q, const Vector::Vec3& pos);
+
+        Vector::Vec3 transform(const Vector::Vec3& vector) const;
+
+        Vector::Vec3 transformInverse(const Vector::Vec3& vector) const;
+
+        Vector::Vec3 transformDirection(const Vector::Vec3& vector) const;
+
+        Vector::Vec3 transformInverseDirection(const Vector::Vec3& vector) const;
+
+        void setInverse(const Matrix3x4& m);
 
     private:
-        real calculateM00(const Quanterion::Vec4& q) const;
-        real calculateM01(const Quanterion::Vec4& q) const;
-        real calculateM02(const Quanterion::Vec4& q) const;
+        real calculateM00(const Quaternion::Vec4& q) const;
+        real calculateM01(const Quaternion::Vec4& q) const;
+        real calculateM02(const Quaternion::Vec4& q) const;
     };
 
 }
