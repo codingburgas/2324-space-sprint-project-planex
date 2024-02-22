@@ -14,25 +14,29 @@ import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Mercury_1: THREE.Mesh
-  }
+    Mercury_1: THREE.Mesh;
+  };
   materials: {
-    mercurius: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
+    mercurius: THREE.MeshStandardMaterial;
+  };
+  animations: GLTFAction[];
+};
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+type ModelProps = JSX.IntrinsicElements['group'] & {
+  position?: [number, number, number];
+};
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/mercury.glb') as GLTFResult
+export default function Model(props: ModelProps) {
+  const { nodes, materials } = useGLTF('../../../public/mercury.glb') as GLTFResult;
+  const { position = [10, 5, 0], ...groupProps } = props;
+
   return (
-    <group {...props} dispose={null}>
+    <group {...groupProps} dispose={null} position={position}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <mesh geometry={nodes.Mercury_1.geometry} material={materials.mercurius} />
       </group>
     </group>
-  )
+  );
 }
 
 useGLTF.preload('../../../public/mercury.glb')
