@@ -10,7 +10,7 @@ Title: Sun with 2K Textures
 import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -24,13 +24,13 @@ type GLTFResult = GLTF & {
 
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
-export function Model(props: JSX.IntrinsicElements['group']) {
+export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/sun.glb') as GLTFResult
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_5.geometry} material={materials.material} position={[0, 0, 0.256]} scale={0.026} />
+      <mesh geometry={nodes.Object_5.geometry} material={materials.material} position={[0, 0, 0.256]} scale={1} />
     </group>
   )
 }
 
-useGLTF.preload('/sun.glb')
+useGLTF.preload('../../../sun.glb')

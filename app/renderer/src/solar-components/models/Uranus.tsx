@@ -10,7 +10,7 @@ Title: Planet Uranus
 import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -36,7 +36,7 @@ interface GLTFAction extends THREE.AnimationClip {
 }
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
-export function Model(props: JSX.IntrinsicElements['group']) {
+export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = useRef<THREE.Group>()
   const { nodes, materials, animations } = useGLTF('../../../public/sun.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
@@ -65,4 +65,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('/uranus.glb')
+useGLTF.preload('../../../uranus.glb')
