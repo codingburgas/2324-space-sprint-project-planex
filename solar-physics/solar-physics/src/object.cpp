@@ -65,6 +65,3 @@ void Object::rotateAround(const Vector::Vec3& axis, real angle) {
 void Object::scale(const Vector::Vec3& scaling) {
     transformMatrix.scale(scaling);
 }
-
--+
-
