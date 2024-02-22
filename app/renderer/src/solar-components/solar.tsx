@@ -37,7 +37,6 @@ export default function App() {
         <SceneBackground />
         <OrbitControls enableDamping={true} enableZoom={true} enabled={true} enablePan={true} enableRotate={true} />
         <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} castShadow />
         <Saturn />
         <Earth />
         <Neptune />
@@ -45,6 +44,7 @@ export default function App() {
         <Mars />
         <Uranus />
         <Jupiter />
+        <Sun />
       </Canvas>
     </div>
   );

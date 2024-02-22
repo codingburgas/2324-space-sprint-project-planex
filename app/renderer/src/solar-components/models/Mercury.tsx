@@ -28,7 +28,7 @@ type ModelProps = JSX.IntrinsicElements['group'] & {
 
 export default function Model(props: ModelProps) {
   const { nodes, materials } = useGLTF('../../../public/mercury.glb') as GLTFResult;
-  const { position = [10, 5, 0], ...groupProps } = props;
+  const { position = [33, 5, 0], ...groupProps } = props;
 
   return (
     <group {...groupProps} dispose={null} position={position}>
