@@ -43,7 +43,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials, animations } = useGLTF('../../../public/saturn.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null} position={[20,5,20]}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={0.002}>
           <group name="56fb5d81d5a845599d5e60534f293915fbx" rotation={[Math.PI / 2, 0, 0]}>
