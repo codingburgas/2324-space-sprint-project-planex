@@ -4,7 +4,7 @@ import path from 'path';
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
-const iconPath = "./assets/icon.ico";
+const iconPath = path.join('./core/assets/icon.ico');
 let primaryDisplay : Electron.Display, screenSize : Electron.Size;
 async function retrieveData() : Promise<void> {
   primaryDisplay = screen.getPrimaryDisplay();
