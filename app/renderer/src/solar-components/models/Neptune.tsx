@@ -7,29 +7,41 @@ Source: https://sketchfab.com/3d-models/neptune-8c6dc96f47ab4d798a1cb2d827da3fbe
 Title: Neptune
 */
 
-import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import type { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import React from 'react';
+import { useGLTF } from '@react-three/drei';
+import type { GLTF } from 'three-stdlib';
+
+type GLTFAction = any; // Assuming GLTFAction is not defined in your code snippet
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_2: THREE.Mesh
-  }
+    Object_2: THREE.Mesh;
+  };
   materials: {
-    moon: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+    moon: THREE.MeshStandardMaterial;
+  };
+  animations: GLTFAction[];
+};
+
+type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>;
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/neptune.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('../../../public/neptune.glb') as GLTFResult;
+
+  // Set the desired position for the mesh
+  const position = [5, 5, 0];
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_2.geometry} material={materials.moon} rotation={[-Math.PI / 2, 0, 0]} />
+      <mesh
+        geometry={nodes.Object_2.geometry}
+        material={materials.moon}
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={position} // Add the position property here
+      />
     </group>
-  )
+  );
 }
 
 useGLTF.preload('../../../public/neptune.glb')

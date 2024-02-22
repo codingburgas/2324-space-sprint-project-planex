@@ -6,31 +6,49 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/mars-9c7bbc64d8c74acfa9ec344c0fc10e1a
 Title: Mars
 */
+import * as THREE from 'three';
+import React from 'react';
+import { useGLTF } from '@react-three/drei';
+import type { GLTF } from 'three-stdlib';
 
-import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import type { GLTF } from 'three-stdlib'
+type GLTFAction = any; // Assuming GLTFAction is not defined in your code snippet
 
 type GLTFResult = GLTF & {
   nodes: {
-    Sphere_Material002_0: THREE.Mesh
-  }
+    Sphere_Material002_0: THREE.Mesh;
+  };
   materials: {
-    ['Material.002']: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
+    ['Material.002']: THREE.MeshStandardMaterial;
+  };
+  animations: GLTFAction[];
+};
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+export default function Model(props: JSX.IntrinsicElements['group']) {
+  const { nodes, materials } = useGLTF('../../../public/mars.glb') as GLTFResult;
 
-export default function Model(props: JSX.IntrinsicElements['group'] ) {
-  const { nodes, materials } = useGLTF('../../../public/mars.glb') as GLTFResult
+  // Set the desired position for the mesh
+  const position = [0, 5, 15];
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Sphere_Material002_0.geometry} material={materials['Material.002']} rotation={[-Math.PI / 2, 0, 0]} scale={1} position={[15,5,15]} />
+      {/* Add AmbientLight for general scene illumination */}
+      <ambientLight intensity={0.5} />
+
+      {/* Add DirectionalLight for directional illumination */}
+      <directionalLight position={[5, 5, 5]} intensity={0.5} />
+
+      {/* Add PointLight for point illumination */}
+      <pointLight position={[10, 10, 10]} intensity={1} castShadow />
+
+      <mesh
+        geometry={nodes.Sphere_Material002_0.geometry}
+        material={materials['Material.002']}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={1}
+        position={position} // Add the position property here
+      />
     </group>
-  )
+  );
 }
 
 useGLTF.preload('../../../public/mars.glb')
