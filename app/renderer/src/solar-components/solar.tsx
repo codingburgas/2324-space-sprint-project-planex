@@ -40,7 +40,7 @@ export default function App() {
         <Saturn />
         <Earth />
         <Neptune />
-        {/* <Mercury /> */}
+        <Mercury />
         <Mars />
         <Uranus />
         <Jupiter />
