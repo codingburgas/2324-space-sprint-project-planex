@@ -26,9 +26,21 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/sun.glb') as GLTFResult
+
+  // Assign texture to the material
+  const texture = useRef<THREE.Texture>()
+  const textureLoader = new THREE.TextureLoader()
+  texture.current = textureLoader.load('../../../public/sun-texture.jpg') // Replace 'path_to_your_texture.jpg' with the path to your texture
+
+  // Modify the material to include the texture
+  const material = useRef<THREE.MeshStandardMaterial>()
+  material.current = materials.material.clone() // Clone the original material to avoid affecting others
+  material.current.map = texture.current // Assign the texture to the 'map' property of the material
+  material.current.metalness = 2 // Adjust metalness to make it reflect more light
+
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_5.geometry} material={materials.material} position={[100, 0, 0.256]} scale={1} />
+      <mesh geometry={nodes.Object_5.geometry} material={material.current} position={[100, 0, 0.256]} scale={1} />
     </group>
   )
 }
