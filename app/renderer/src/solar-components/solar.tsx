@@ -1,3 +1,4 @@
+import Sun from "./models/Sun.tsx"
 import Mercury from './models/Mercury.tsx';
 import Earth from './models/Earth.tsx';
 import Jupiter from './models/Jupiter.tsx';
@@ -5,9 +6,8 @@ import Mars from './models/Mars.tsx';
 import Saturn from './models/Saturn.tsx';
 import Neptune from './models/Neptune.tsx';
 import Uranus from './models/Uranus.tsx';
-import { Canvas, useThree } from '@react-three/fiber'
 import { createRoot } from 'react-dom/client'
-import Sun from "./models/Sun"
+import { Canvas, useThree } from '@react-three/fiber'
 import { useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei'
@@ -40,7 +40,7 @@ export default function App() {
         <Saturn />
         <Earth />
         <Neptune />
-        <Mercury />
+        {/* <Mercury /> */}
         <Mars />
         <Uranus />
         <Jupiter />

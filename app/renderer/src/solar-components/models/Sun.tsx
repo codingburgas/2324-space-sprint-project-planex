@@ -10,37 +10,39 @@ Title: Sun with 2K Textures
 import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import type { GLTF } from 'three-stdlib'
+import type { GLTF  } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
     Object_5: THREE.Mesh
-  }
+  };
   materials: {
     material: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
+  };
+};
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+type ModelProps = JSX.IntrinsicElements['group'] & {
+  position?: [number, number, number];
+};
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/sun.glb') as GLTFResult
+export default function Model(props: ModelProps) {
+  const { nodes, materials } = useGLTF('../../../public/sun.glb') as GLTFResult;
+  const { position = [100, 0, 0.256], ...groupProps } = props; // Default position set to [100, 0, 0.256]
 
   // Assign texture to the material
   const texture = useRef<THREE.Texture>()
   const textureLoader = new THREE.TextureLoader()
-  texture.current = textureLoader.load('../../../public/sun-texture.jpg') // Replace 'path_to_your_texture.jpg' with the path to your texture
+  texture.current = textureLoader.load('../../../public/sun-texture.jpg')
 
   // Modify the material to include the texture
   const material = useRef<THREE.MeshStandardMaterial>()
-  material.current = materials.material.clone() // Clone the original material to avoid affecting others
-  material.current.map = texture.current // Assign the texture to the 'map' property of the material
-  material.current.metalness = 2 // Adjust metalness to make it reflect more light
+  material.current = materials.material.clone()
+  material.current.map = texture.current
+  material.current.metalness = 2
 
   return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_5.geometry} material={material.current} position={[100, 0, 0.256]} scale={1} />
+    <group {...groupProps} dispose={null} position={position}> {/* Apply the position prop here */}
+      <mesh geometry={nodes.Object_5.geometry} material={material.current} scale={1} />
     </group>
   )
 }

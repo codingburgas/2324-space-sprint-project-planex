@@ -7,11 +7,9 @@ Source: https://sketchfab.com/3d-models/mars-9c7bbc64d8c74acfa9ec344c0fc10e1a
 Title: Mars
 */
 import * as THREE from 'three';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import type { GLTF } from 'three-stdlib';
-
-type GLTFAction = any; // Assuming GLTFAction is not defined in your code snippet
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -20,36 +18,40 @@ type GLTFResult = GLTF & {
   materials: {
     ['Material.002']: THREE.MeshStandardMaterial;
   };
-  animations: GLTFAction[];
 };
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/mars.glb') as GLTFResult;
 
-  // Set the desired position for the mesh
-  const position = [-20, 5, 0];
+  // Assign texture to the material
+  const texture = useRef<THREE.Texture>()
+  const textureLoader = new THREE.TextureLoader()
+  texture.current = textureLoader.load('../../../public/mars-texture.jpg')
+
+  // Modify the material to include the texture
+  const material = useRef<THREE.MeshStandardMaterial>()
+  material.current = materials['Material.002'].clone() as THREE.MeshStandardMaterial
+  material.current.map = texture.current
+  material.current.metalness = 2
+
 
   return (
     <group {...props} dispose={null}>
-      {/* Add AmbientLight for general scene illumination */}
+      {/* Your lights */}
       <ambientLight intensity={0.5} />
-
-      {/* Add DirectionalLight for directional illumination */}
       <directionalLight position={[5, 5, 5]} intensity={0.5} />
-
-      {/* Add PointLight for point illumination */}
       <pointLight position={[10, 10, 10]} intensity={1} castShadow />
 
+      {/* Render your mesh */}
       <mesh
         geometry={nodes.Sphere_Material002_0.geometry}
-        material={materials['Material.002']}
+        material={material.current}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={1}
-        position={position} // Add the position property here
+        position={[-20, 5, 0]}
       />
     </group>
   );
 }
 
-useGLTF.preload('../../../public/mars.glb')
-
+useGLTF.preload('../../../public/mars.glb');
