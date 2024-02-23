@@ -70,7 +70,6 @@
 
 ### Used tools for code testing & overhead:
 <p align="left" gap="10px">
-<a href="https://www.python.org/"><img width="45px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png"/></a>
 <a href="https://nodejs.org/en"><img width="140" height="45" src="Images/Sentry.svg" alt="solid"/></a>    
 </p>
 
@@ -90,10 +89,8 @@
 <br>
 
 ### REQUIREMENTS:
-- <a href="http://www.mediafire.com/folder/dah626px1jb70lx,fzv384uwwork9q0,6o908yu625hauto,7z5mle989z4m82y,drx5uw66awrjjg3,gwc3ififz87ai78,as1wl3zvx4e2tea,zj966selizralnd/shared">Download<a/>
 - 8GB+ RAM (rough estimate for now)
 - NodeJS 18.4.1+
-- Python 3.7+ (**OPTIONAL** - when testing websocket client -> server connection **(CAN VARY)** )
 - SSE4a/4.2 CPU
 
 <hr>
@@ -105,10 +102,16 @@
 <p>First you have to clone our project <b>( Some sort of an IDE (e.g visual studio) )</b>: </p>
 <pre>git clone https://github.com/codingburgas/2324-space-sprint-project-planex.git</pre>
 <br>
-<p>Open it in your favourite code editor or IDE, build a new terminal and <b>type the following to start the frontend server: </b> </p>
+<p>Install the models using GitHub LFS (Large File System)</p>
 <pre>
-cd app
-cd renderer
+cd app/renderer/public
+git lfs fetch
+git lfs pull
+</pre>
+<br>
+<p>From there, build a new terminal and <b>type the following to start the frontend server: </b> </p>
+<pre>
+cd app/renderer
 npm i
 npm run dev
 </pre>
