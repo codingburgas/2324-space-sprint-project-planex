@@ -29,10 +29,10 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/mercury.glb') as GLTFResult
   return (
-    <group {...props} dispose={null} position = {[0, 0, 2]}>
+    <group {...props} dispose={null} position = {[60, 0, 0]}>
       <group scale={0.01}>
-        <mesh geometry={nodes.venus_Material001_0.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={791.399} />
-        <mesh geometry={nodes.atmosphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={1337.027} />
+        {/* <mesh geometry={nodes.venus_Material001_0.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={500} /> */}
+        <mesh geometry={nodes.atmosphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={320} />
       </group>
     </group>
   )

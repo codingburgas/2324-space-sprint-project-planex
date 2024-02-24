@@ -11,7 +11,6 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
-
 type GLTFResult = GLTF & {
   nodes: {
     rings_lambert3_0: THREE.Mesh
@@ -41,13 +40,13 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials, animations } = useGLTF('../../../public/uranus.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null} position={[-330, 0, 0]}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
-          <group name="f029815b00e641df84e4fa9461089ab2fbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+          <group name="f029815b00e641df84e4fa9461089ab2fbx" rotation={[Math.PI / 2, 0, 0]} scale={3}>
             <group name="Object_2">
               <group name="RootNode">
-                <group name="uranus" position={[-1312.793, 0.013, 1294443.875]} rotation={[-0.818, 1.177, 0.869]} scale={1000}>
+                <group name="uranus" position={[0, 0, 0]} rotation={[-0.818, 1.177, 0.869]} scale={3}>
                   <group name="rings">
                     <mesh name="rings_lambert3_0" geometry={nodes.rings_lambert3_0.geometry} material={materials.lambert3} />
                     <mesh name="rings_lambert4_0" geometry={nodes.rings_lambert4_0.geometry} material={materials.lambert4} />

@@ -6,7 +6,6 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/mars-2b46962637ee4311af8f0d1d0709fbb2
 Title: Mars
 */
-
 import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
@@ -14,10 +13,12 @@ import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Mercury_1: THREE.Mesh
+    mars_Material003_0: THREE.Mesh
+    atmosphere_Material004_0: THREE.Mesh
   }
   materials: {
-    mercurius: THREE.MeshStandardMaterial
+    ['Material.003']: THREE.MeshStandardMaterial
+    ['Material.004']: THREE.MeshStandardMaterial
   }
   animations: GLTFAction[]
 }
@@ -27,12 +28,11 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/mars.glb') as GLTFResult
   return (
-    <group {...props} dispose={null} position={[-20, 5, 0]}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh geometry={nodes.Mercury_1.geometry} material={materials.mercurius} />
+    <group {...props} dispose={null} position={[-85, 0, 0]}>
+      <group scale={0.01}>
+        <mesh geometry={nodes.mars_Material003_0.geometry} material={materials['Material.003']} rotation={[-Math.PI / 2, 0, 0]} scale={200} />
+        <mesh geometry={nodes.atmosphere_Material004_0.geometry} material={materials['Material.004']} rotation={[-Math.PI / 2, 0, 0]} scale={350} />
       </group>
     </group>
   )
 }
-
-useGLTF.preload('../../../public/mars.glb')

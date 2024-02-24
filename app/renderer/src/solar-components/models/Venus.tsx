@@ -6,7 +6,6 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/venus-d497ce25553447f3b7b679110c85cfa1
 Title: Venus
 */
-
 import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
@@ -14,10 +13,12 @@ import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Sphere_Material002_0: THREE.Mesh
+    venus_Material001_0: THREE.Mesh
+    atmosphere_Material_0: THREE.Mesh
   }
   materials: {
-    ['Material.002']: THREE.MeshStandardMaterial
+    ['Material.001']: THREE.MeshStandardMaterial
+    Material: THREE.MeshStandardMaterial
   }
   animations: GLTFAction[]
 }
@@ -27,11 +28,13 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/venus.glb') as GLTFResult
   return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.Sphere_Material002_0.geometry} material={materials['Material.002']} rotation={[-Math.PI / 2, 0, 0]} scale={10} position = {[40, 5, -1]} />
+    <group {...props} dispose={null} position={[10, 0, 0]}>
+      <group scale={0.01}>
+        <mesh geometry={nodes.venus_Material001_0.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={350}/>
+        <mesh geometry={nodes.atmosphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={600} />
+      </group>
     </group>
   )
 }
 
 useGLTF.preload('../../../public/venus.glb')
-

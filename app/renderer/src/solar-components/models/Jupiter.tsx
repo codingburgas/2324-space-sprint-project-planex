@@ -7,34 +7,41 @@ Source: https://sketchfab.com/3d-models/realistic-jupiter-993ba62a539e4c308e9e31
 Title: Realistic Jupiter
 */
 
-import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import type { GLTF } from 'three-stdlib'
+import * as THREE from 'three';
+import React from 'react';
+import { useGLTF } from '@react-three/drei';
+import type { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
-    Sphere_Material_0: THREE.Mesh
-  }
+    Sphere_Material_0: THREE.Mesh;
+  };
   materials: {
-    Material: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
-
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+    Material: THREE.MeshStandardMaterial;
+  };
+  animations: GLTFAction[];
+};
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/jupiter.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('../../../public/jupiter.glb') as GLTFResult;
+
+  const scaleFactor = 0.028;
+
   return (
-    <group {...props} dispose={null} position={[-50, 5, 0]}>
+    <group {...props} dispose={null} position={[-160, 5, 0]} scale={[scaleFactor, scaleFactor, scaleFactor]}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
-        <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <mesh geometry={nodes.Sphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={101} />
+        <group rotation={[Math.PI / 2, 0, 0]}>
+          {/* Apply scale to the mesh */}
+          <mesh
+            geometry={nodes.Sphere_Material_0.geometry}
+            material={materials.Material}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={[scaleFactor * 101, scaleFactor * 101, scaleFactor * 101]}
+          />
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('../../../public/jupiter.glb')
+useGLTF.preload('../../../public/jupiter.glb');

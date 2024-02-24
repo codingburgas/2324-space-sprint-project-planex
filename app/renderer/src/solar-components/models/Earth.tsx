@@ -14,45 +14,38 @@ import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_2: THREE.Mesh
-    Object_3: THREE.Mesh
-    Object_4: THREE.Mesh
-    Object_5: THREE.Mesh
-    Object_6: THREE.Mesh
-    Object_7: THREE.Mesh
-    Object_8: THREE.Mesh
-    Object_9: THREE.Mesh
-    Object_10: THREE.Mesh
-    Object_11: THREE.Mesh
-    Object_12: THREE.Mesh
-  }
+    Object_2: THREE.Mesh;
+    Object_3: THREE.Mesh;
+    Object_4: THREE.Mesh;
+    Object_5: THREE.Mesh;
+    Object_6: THREE.Mesh;
+    Object_7: THREE.Mesh;
+    Object_8: THREE.Mesh;
+    Object_9: THREE.Mesh;
+    Object_10: THREE.Mesh;
+    Object_11: THREE.Mesh;
+    Object_12: THREE.Mesh;
+  };
   materials: {
-    heightmap_ref_group: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
-
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+    heightmap_ref_group: THREE.MeshStandardMaterial;
+  };
+  animations: GLTFAction[];
+};
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/earth.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('../../../public/earth.glb') as GLTFResult;
+
+  const scaleFactor = 10;
+
   return (
-    <group {...props} dispose={null} position={[10,5,0]}>
+    <group {...props} dispose={null} position={[-40, -5, 0]} scale={[scaleFactor, scaleFactor, scaleFactor]}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh geometry={nodes.Object_2.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_3.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_4.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_5.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_6.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_7.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_8.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_9.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_10.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_11.geometry} material={materials.heightmap_ref_group} />
-        <mesh geometry={nodes.Object_12.geometry} material={materials.heightmap_ref_group} />
+        {Object.keys(nodes).map((nodeName) => (
+          <mesh key={nodeName} geometry={nodes[nodeName].geometry} material={materials.heightmap_ref_group} />
+        ))}
       </group>
     </group>
-  )
+  );
 }
 
 useGLTF.preload('../../../public/earth.glb')

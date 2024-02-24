@@ -11,8 +11,7 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
-
-type GLTFResult = GLTF & {
+  type GLTFResult = GLTF & {
   nodes: {
     Esfera_Mat1_0: THREE.Mesh
     Esfera_Mat1_0_1: THREE.Mesh
@@ -34,9 +33,13 @@ type GLTFResult = GLTF & {
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/neptune.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('../../../public/neptune.glb') as GLTFResult;
+
+  const groupScale = 0.05; 
+  const sphereScale = 1;  
+
   return (
-    <group {...props} dispose={null} position = {[-140, 5, -1]}>
+    <group {...props} dispose={null} position={[-400, 0, 0]} scale={[groupScale, groupScale, groupScale]}>
       <group rotation={[-2.967, 1.045, -Math.PI]}>
         <mesh geometry={nodes.Esfera_Mat1_0.geometry} material={materials['Mat.1']} />
         <mesh geometry={nodes.Esfera_Mat1_0_1.geometry} material={materials['Mat.1']} />
@@ -48,10 +51,10 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         <mesh geometry={nodes.Esfera_Mat1_0_7.geometry} material={materials['Mat.1']} />
       </group>
       <group rotation={[-1.396, 0, 0]}>
-        <mesh geometry={nodes.Plano_Mat_0.geometry} material={materials.material} position={[-140, 5, -1]} />
+        <mesh geometry={nodes.Plano_Mat_0.geometry} material={materials.material} position={[-140, 5, -1]} scale={[groupScale, groupScale, groupScale]} />
       </group>
     </group>
-  )
+  ) 
 }
 
 useGLTF.preload('../../../public/neptune.glb')
