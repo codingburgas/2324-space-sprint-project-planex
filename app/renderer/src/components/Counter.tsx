@@ -9,11 +9,12 @@ const CombinedComponent = () => {
   const greenBG : string | undefined = "bg-green-500";
   const initialBG : string | undefined = "bg-red-500";
 
+
   const [progress, setProgress] = createSignal(0);
   const [loadingColor, setLoadingColor] = createSignal(initialBG);
 
   const interval = setInterval(() => {
-    setProgress((prev) => (prev < 100 ? prev + 5 : 100));
+    setProgress((prev) => (prev < 100 ? prev + 3 : 100));
   }, 500);
 
   onCleanup(() => clearInterval(interval));
@@ -21,9 +22,19 @@ const CombinedComponent = () => {
   createEffect(() => {
     if (progress() >= 33) 
       setLoadingColor(progress() >= 33 && progress() < 66 ? yellowBG : greenBG);
-    
-    if (progress() === 100) 
-      window.location.href = "http://localhost:3000/solar"
+      const loadingScreen = document.querySelector(".__loading-screen");
+
+    if (progress() >= 100) {
+      if (loadingScreen) {
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.filter = 'blur(10px)';
+      }
+      setTimeout(() => {
+        if (loadingScreen) {
+          loadingScreen.style.display = 'none';
+        }
+      }, 2000);
+    }
   });
 
   onMount(() => {
@@ -104,7 +115,7 @@ const CombinedComponent = () => {
   onCleanup(() => nukeTimout());
 
   return (
-    <div class="__loading-screen text-center overflow-hidden h-screen w-screen bg-black" style={{ "font-family": "Inter, sans-serif" }}>
+    <div class="__loading-screen text-center overflow-hidden h-screen w-screen bg-black absolute z-[999] block" style={{ "font-family": "Inter, sans-serif" }}>
         <span class="text-5xl text-[#888] mt-44 inline absolute left-[50%] -translate-x-[50%] selection:bg-transparent selection:cursor-default hover:cursor-default max-h-fit" id="anim"> {typedText()}
         </span>
         <div class="flex flex-col justify-center items-center h-screen bg-black">

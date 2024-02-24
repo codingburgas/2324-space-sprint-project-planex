@@ -1,6 +1,7 @@
 ---
 import Titlebar from "../../components/Titlebar"
 import App from "../../solar-components/solar"
+import Counter from "../../components/Counter"
 ---
 
 <html lang="en" class="h-screen w-screen">
@@ -26,6 +27,7 @@ import App from "../../solar-components/solar"
     <div>
       <Titlebar client:load />
     </div>
+    <Counter client:load />
     <main id = "root" class="flex-grow">
       <App client:only="react" />
     </main >
