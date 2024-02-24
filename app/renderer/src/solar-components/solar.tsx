@@ -10,7 +10,7 @@ import { createRoot } from 'react-dom/client'
 import { Canvas, useThree } from '@react-three/fiber'
 import { useEffect } from 'react';
 import * as THREE from 'three';
-import { OrbitControls } from '@react-three/drei'
+import Camera from "./Camera"
 import Venus from './models/Venus.tsx';
 import Pluto from './models/Pluto.tsx';
 
@@ -35,8 +35,8 @@ export default function App() {
   return (
     <div id="canvas-container" className="flex-grow w-full h-full">
 <Canvas camera={{ fov: 75, position: [0, 0, 5] }}>
+        <Camera />
         <SceneBackground />
-        <OrbitControls enableDamping={true} enableZoom={true} enabled={true} enablePan={true} enableRotate={true} />
         <ambientLight intensity={0.5} />
         <Saturn />
         <Earth />
