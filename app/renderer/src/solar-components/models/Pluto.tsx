@@ -6,31 +6,30 @@ License: CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
 Source: https://sketchfab.com/3d-models/pluto-0840325e536d47bdb6ed4b867d55b5c1
 Title: Pluto
 */
-import * as THREE from 'three';
-import React from 'react';
-import { useGLTF } from '@react-three/drei';
-import type { GLTF, GLTFAction } from 'three-stdlib';
+import * as THREE from 'three'
+import React, { useRef } from 'react'
+import { useGLTF } from '@react-three/drei'
+import type { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_2: THREE.Mesh;
-  };
+    Object_4: THREE.Mesh
+  }
   materials: {
-    moon: THREE.MeshStandardMaterial;
-  };
-  animations: GLTFAction[];
-};
-
-const scaleValue = 10000; // Adjust this value based on your needs
-
-export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/pluto.glb') as GLTFResult;
-
-  return (
-    <group {...props} dispose={null} scale={[scaleValue, scaleValue, scaleValue]}>
-      <mesh geometry={nodes.Object_2.geometry} material={materials.moon} rotation={[-Math.PI / 2, 0, 0]} />
-    </group>
-  );
+    ['Scene_-_Root']: THREE.MeshStandardMaterial
+  }
+  animations: GLTFAction[]
 }
 
-useGLTF.preload('../../../public/pluto.glb');
+type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+
+export default function Model(props: JSX.IntrinsicElements['group']) {
+  const { nodes, materials } = useGLTF('../../../public/pluto.glb') as GLTFResult
+  return (
+    <group {...props} dispose={null}>
+      <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={5.28} userData={{ name: 'Object_4' }} position = {[-450, 0, 0]} />
+    </group>
+  )
+}
+
+useGLTF.preload('../../../public/pluto.glb')

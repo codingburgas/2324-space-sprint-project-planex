@@ -12,7 +12,8 @@ import { useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei'
 import Venus from './models/Venus.tsx';
-2
+import Pluto from './models/Pluto.tsx';
+
 function SceneBackground() {
   const { scene, gl } = useThree();
 
@@ -46,6 +47,7 @@ export default function App() {
         <Jupiter />
         <Sun />
         <Venus />
+        <Pluto />
       </Canvas>
     </div>
   );
