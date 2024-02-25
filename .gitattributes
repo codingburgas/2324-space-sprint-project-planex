@@ -62,6 +62,24 @@
 #*.dot   diff=astextplain
 #*.DOT   diff=astextplain
 #*.pdf   diff=astextplain
+
+
+client/include/*.h linguist-language=text
+client/include/*.cpp linguist-language=text
+client/include/*.hpp linguist-language=text
+client/lib/*.hpp linguist-language=text
+client/lib/*.cpp linguist-language=text
+client/lib/*.h linguist-language=text
+solar-physics/lib/*.h linguist-language=text
+solar-physics/lib/*.hpp linguist-language=text
+solar-physics/lib/*.cpp linguist-language=text
+solar-physics/include/*.hpp linguist-language=text
+solar-physics/include/*.hpp linguist-language=text
+solar-physics/include/*.cpp linguist-language=text
+
+
+
+
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
