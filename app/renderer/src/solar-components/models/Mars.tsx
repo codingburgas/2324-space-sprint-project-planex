@@ -23,16 +23,40 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
+function CircleGeometry(radius: number, segments: number, center: THREE.Vector3): THREE.BufferGeometry {
+  const geometry = new THREE.BufferGeometry();
+  const vertices = [];
+
+
+  for (let i = 0; i <= segments; i++) {
+    const theta = (i / segments) * Math.PI * 2;
+    const x = center.x + radius * Math.cos(theta);
+    const y = center.y;
+    const z = center.z + radius * Math.sin(theta);
+    vertices.push(x, y, z);
+  }
+
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+  return geometry;
+}
+
+
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/mars.glb') as GLTFResult
   return (
-    <group {...props} dispose={null} position={[-85, 0, 0]}>
-      <group scale={0.01}>
-        <mesh geometry={nodes.mars_Material003_0.geometry} material={materials['Material.003']} rotation={[-Math.PI / 2, 0, 0]} scale={200} />
-        <mesh geometry={nodes.atmosphere_Material004_0.geometry} material={materials['Material.004']} rotation={[-Math.PI / 2, 0, 0]} scale={350} />
+    <group>
+      <group {...props} dispose={null} position={[-85, 0, 0]}>
+        <group scale={0.01}>
+          <mesh geometry={nodes.mars_Material003_0.geometry} material={materials['Material.003']} rotation={[-Math.PI / 2, 0, 0]} scale={200} />
+          <mesh geometry={nodes.atmosphere_Material004_0.geometry} material={materials['Material.004']} rotation={[-Math.PI / 2, 0, 0]} scale={350} />
+        </group>
       </group>
+      <line geometry={CircleGeometry(205, 64, new THREE.Vector3(120, 0, 0))}>
+        <lineBasicMaterial color='blue' transparent opacity={2} />
+      </line>
     </group>
   )
 }

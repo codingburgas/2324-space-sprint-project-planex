@@ -21,13 +21,37 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
+function CircleGeometry(radius: number, segments: number, center: THREE.Vector3): THREE.BufferGeometry {
+  const geometry = new THREE.BufferGeometry();
+  const vertices = [];
+
+
+  for (let i = 0; i <= segments; i++) {
+    const theta = (i / segments) * Math.PI * 2;
+    const x = center.x + radius * Math.cos(theta);
+    const y = center.y;
+    const z = center.z + radius * Math.sin(theta);
+    vertices.push(x, y, z);
+  }
+
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+  return geometry;
+}
+
+
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('../../../public/pluto.glb') as GLTFResult
   return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={5.28} userData={{ name: 'Object_4' }} position = {[-450, 0, 0]} />
+    <group>
+      <group {...props} dispose={null}>
+        <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={5.28} userData={{ name: 'Object_4' }} position={[-450, 0, 0]} />
+      </group>
+      <line geometry={CircleGeometry(570, 64, new THREE.Vector3(120, 0, 0))}>
+        <lineBasicMaterial color='blue' transparent opacity={2} />
+      </line>
     </group>
   )
 }
