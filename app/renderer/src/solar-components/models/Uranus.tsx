@@ -60,7 +60,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const { actions } = useAnimations(animations, group)
   return (
     <group>
-      <group ref={group} {...props} dispose={null} position={[-330, 0, 0]}>
+      <group ref={group} {...props} dispose={null} position={[-330, 0, 0]} >
         <group name="Sketchfab_Scene">
           <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
             <group name="f029815b00e641df84e4fa9461089ab2fbx" rotation={[Math.PI / 2, 0, 0]} scale={3}>
@@ -68,12 +68,17 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
                 <group name="RootNode">
                   <group name="uranus" position={[0, 0, 0]} rotation={[-0.818, 1.177, 0.869]} scale={3}>
                     <group name="rings">
-                      <mesh name="rings_lambert3_0" geometry={nodes.rings_lambert3_0.geometry} material={materials.lambert3} />
-                      <mesh name="rings_lambert4_0" geometry={nodes.rings_lambert4_0.geometry} material={materials.lambert4} />
-                      <mesh name="rings_lambert5_0" geometry={nodes.rings_lambert5_0.geometry} material={materials.lambert5} />
-                      <mesh name="rings_lambert2_0" geometry={nodes.rings_lambert2_0.geometry} material={materials.lambert2} />
+                      <mesh name="rings_lambert3_0" geometry={nodes.rings_lambert3_0.geometry} material={materials.lambert3}  castShadow 
+              receiveShadow />
+                      <mesh name="rings_lambert4_0" geometry={nodes.rings_lambert4_0.geometry} material={materials.lambert4}  castShadow 
+              receiveShadow />
+                      <mesh name="rings_lambert5_0" geometry={nodes.rings_lambert5_0.geometry} material={materials.lambert5}  castShadow 
+              receiveShadow />
+                      <mesh name="rings_lambert2_0" geometry={nodes.rings_lambert2_0.geometry} material={materials.lambert2}  castShadow 
+              receiveShadow />
                     </group>
-                    <mesh name="uranus_uranus_shader_0" geometry={nodes.uranus_uranus_shader_0.geometry} material={materials.uranus_shader} />
+                    <mesh name="uranus_uranus_shader_0" geometry={nodes.uranus_uranus_shader_0.geometry} material={materials.uranus_shader}  castShadow 
+              receiveShadow />
                   </group>
                 </group>
               </group>
@@ -82,7 +87,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         </group>
       </group>
       <line geometry={CircleGeometry(450, 64, new THREE.Vector3(120, 0, 0))}>
-        <lineBasicMaterial color='blue' transparent opacity={2} />
+        <lineBasicMaterial color={`#efefef`} transparent opacity={2} />
       </line>
     </group>
   )

@@ -61,17 +61,26 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     <group>
       <group {...props} dispose={null} position={[-400, 0, 0]} scale={[groupScale, groupScale, groupScale]}>
         <group rotation={[-2.967, 1.045, -Math.PI]}>
-          <mesh geometry={nodes.Esfera_Mat1_0.geometry} material={materials['Mat.1']} />
-          <mesh geometry={nodes.Esfera_Mat1_0_1.geometry} material={materials['Mat.1']} />
-          <mesh geometry={nodes.Esfera_Mat1_0_2.geometry} material={materials['Mat.1']} />
-          <mesh geometry={nodes.Esfera_Mat1_0_3.geometry} material={materials['Mat.1']} />
-          <mesh geometry={nodes.Esfera_Mat1_0_4.geometry} material={materials['Mat.1']} />
-          <mesh geometry={nodes.Esfera_Mat1_0_5.geometry} material={materials['Mat.1']} />
-          <mesh geometry={nodes.Esfera_Mat1_0_6.geometry} material={materials['Mat.1']} />
-          <mesh geometry={nodes.Esfera_Mat1_0_7.geometry} material={materials['Mat.1']} />
+          <mesh geometry={nodes.Esfera_Mat1_0.geometry} material={materials['Mat.1']}  castShadow 
+              receiveShadow />
+          <mesh geometry={nodes.Esfera_Mat1_0_1.geometry} material={materials['Mat.1']}  castShadow 
+              receiveShadow />
+          <mesh geometry={nodes.Esfera_Mat1_0_2.geometry} material={materials['Mat.1']}  castShadow 
+              receiveShadow />
+          <mesh geometry={nodes.Esfera_Mat1_0_3.geometry} material={materials['Mat.1']}  castShadow 
+              receiveShadow />
+          <mesh geometry={nodes.Esfera_Mat1_0_4.geometry} material={materials['Mat.1']}  castShadow 
+              receiveShadow />
+          <mesh geometry={nodes.Esfera_Mat1_0_5.geometry} material={materials['Mat.1']}  castShadow 
+              receiveShadow />
+          <mesh geometry={nodes.Esfera_Mat1_0_6.geometry} material={materials['Mat.1']}  castShadow 
+              receiveShadow />
+          <mesh geometry={nodes.Esfera_Mat1_0_7.geometry} material={materials['Mat.1']}  castShadow 
+              receiveShadow />
         </group>
         <group rotation={[-1.396, 0, 0]}>
-          <mesh geometry={nodes.Plano_Mat_0.geometry} material={materials.material} position={[-140, 5, -1]} scale={[groupScale, groupScale, groupScale]} />
+          <mesh geometry={nodes.Plano_Mat_0.geometry} material={materials.material} position={[-140, 5, -1]} scale={[groupScale, groupScale, groupScale]}  castShadow 
+              receiveShadow />
         </group>
       </group>
       <line geometry={CircleGeometry(520, 64, new THREE.Vector3(120, 0, 0))}>

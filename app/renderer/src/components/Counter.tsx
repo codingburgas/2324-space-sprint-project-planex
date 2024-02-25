@@ -14,7 +14,7 @@ const CombinedComponent = () => {
   const [loadingColor, setLoadingColor] = createSignal(initialBG);
 
   const interval = setInterval(() => {
-    setProgress((prev) => (prev < 100 ? prev + 3 : 100));
+    setProgress((prev) => (prev < 100 ? prev + 50 : 100));
   }, 500);
 
   onCleanup(() => clearInterval(interval));

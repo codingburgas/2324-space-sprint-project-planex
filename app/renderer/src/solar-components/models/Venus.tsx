@@ -50,8 +50,10 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     <group>
       <group {...props} dispose={null} position={[10, 0, 0]}>
       <group scale={0.01}>
-        <mesh geometry={nodes.venus_Material001_0.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={350}/>
-        <mesh geometry={nodes.atmosphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={600} />
+        <mesh geometry={nodes.venus_Material001_0.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={350}  castShadow 
+              receiveShadow/>
+        <mesh geometry={nodes.atmosphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={600}  castShadow 
+              receiveShadow />
       </group>
 
       <line geometry={CircleGeometry(120, 64, new THREE.Vector3(120, 0, 0))}>

@@ -47,7 +47,8 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   return (
     <group>
       <group {...props} dispose={null}>
-        <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={5.28} userData={{ name: 'Object_4' }} position={[-450, 0, 0]} />
+        <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={5.28} userData={{ name: 'Object_4' }} position={[-450, 0, 0]}  castShadow 
+              receiveShadow />
       </group>
       <line geometry={CircleGeometry(570, 64, new THREE.Vector3(120, 0, 0))}>
         <lineBasicMaterial color='blue' transparent opacity={2} />

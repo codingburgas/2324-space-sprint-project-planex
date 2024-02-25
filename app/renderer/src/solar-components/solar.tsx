@@ -14,6 +14,7 @@ import Camera from "./Camera"
 import Venus from './models/Venus.tsx';
 import Pluto from './models/Pluto.tsx';
 
+
 function SceneBackground() {
   const { scene, gl } = useThree();
 
@@ -34,10 +35,10 @@ function SceneBackground() {
 export default function App() {
   return (
     <div id="canvas-container" className="flex-grow w-full h-full">
-<Canvas camera={{ fov: 75, position: [0, 0, 5] }}>
+<Canvas camera={{ fov: 75, position: [0, 0, 5] }} shadows={true}>
         <Camera />
         <SceneBackground />
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.5} color={0x404040} />
         <Saturn />
         <Earth />
         <Neptune />

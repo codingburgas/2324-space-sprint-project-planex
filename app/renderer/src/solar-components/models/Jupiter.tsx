@@ -57,6 +57,8 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
               material={materials.Material}
               rotation={[-Math.PI / 2, 0, 0]}
               scale={[scaleFactor * 101, scaleFactor * 101, scaleFactor * 101]}
+              castShadow 
+              receiveShadow
             />
           </group>
         </group>

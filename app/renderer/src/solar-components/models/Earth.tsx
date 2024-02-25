@@ -49,11 +49,17 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const scaleFactor = 10;
 
   return (
-    <group>
+ <group>
       <group {...props} dispose={null} position={[-40, -5, 0]} scale={[scaleFactor, scaleFactor, scaleFactor]}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           {Object.keys(nodes).map((nodeName) => (
-            <mesh key={nodeName} geometry={nodes[nodeName].geometry} material={materials.heightmap_ref_group} />
+            <mesh
+              key={nodeName}
+              geometry={nodes[nodeName].geometry}
+              material={materials.heightmap_ref_group}
+              castShadow 
+              receiveShadow
+            />
           ))}
         </group>
       </group>
