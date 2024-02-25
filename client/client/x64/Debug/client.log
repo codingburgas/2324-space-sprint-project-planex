@@ -1,5 +1,11 @@
 ﻿  client.cpp
-C:\Users\amkolev22\source\repos\2324-space-sprint-project-planex\client\include\websocketpp\frame.hpp(834,25): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
-C:\Users\amkolev22\source\repos\2324-space-sprint-project-planex\client\include\websocketpp\common\md5.hpp(367,29): warning C4267: '+=': conversion from 'size_t' to 'websocketpp::md5::md5_word_t', possible loss of data
-C:\Users\amkolev22\source\repos\2324-space-sprint-project-planex\client\include\websocketpp\sha1\sha1.hpp(176,28): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
-  client.vcxproj -> C:\Users\amkolev22\source\repos\2324-space-sprint-project-planex\client\x64\Debug\client.exe
+C:\Users\pomelo\Desktop\2324-space-sprint-project-planex\client\include\websocketpp\frame.hpp(834,13): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
+  (compiling source file 'client.cpp')
+  
+C:\Users\pomelo\Desktop\2324-space-sprint-project-planex\client\include\websocketpp\common\md5.hpp(367,29): warning C4267: '+=': conversion from 'size_t' to 'websocketpp::md5::md5_word_t', possible loss of data
+  (compiling source file 'client.cpp')
+  
+C:\Users\pomelo\Desktop\2324-space-sprint-project-planex\client\include\websocketpp\sha1\sha1.hpp(176,24): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'client.cpp')
+  
+  client.vcxproj -> C:\Users\pomelo\Desktop\2324-space-sprint-project-planex\client\x64\Debug\client.exe
