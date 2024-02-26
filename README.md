@@ -84,7 +84,7 @@
 - [Documentation]()
 - [Presentation]()
 - [Doxygen]()
-- [Gitbook]()
+- [Gitbook](https://app.gitbook.com/o/QrV3bFI40FppuCPPT6VY/s/2s06wDypGZXuNWLcJV2b/)
 
 <br>
 
