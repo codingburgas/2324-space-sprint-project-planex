@@ -6,6 +6,8 @@
 #include <websocketpp/server.hpp>
 #include <iostream>
 #include <nlohmann/json.hpp>
+#include "vector.hpp"
+#include "particle.hpp"
 
 
 using websocketpp::lib::placeholders::_1;
@@ -32,6 +34,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
     
     try {
         json parsedMessage = json::parse(msg->get_payload());
+        std::cout << msg->get_payload() << std::endl;
         json response;
 
         if (!parsedMessage.is_object()) {
@@ -41,9 +44,29 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
 
         std::string planetType = parsedMessage["type"];
         json coords = parsedMessage["coords"];
+        real theta = parsedMessage["theta"];
 
         if (planetType == "mercury") {
-            mercuryData = parsedMessage;
+            Particle::Particle mercury;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 120;
+            real sunMass = 500; 
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            mercury.celestialVelocity(gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = mercury.velocity;
+            
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", currentPos.y},
+            {"z", currentPos.z}
+            };
+            mercuryData["coords"] = positionJson;
+            mercuryData["type"] = "mercury";
+
             response = mercuryData;
         }
         else if (planetType == "venus") {

@@ -152,7 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\memory.cpp" />
-    <ClCompile Include="src\network.cpp" />
     <ClCompile Include="src\particle.cpp" />
     <ClCompile Include="src\quanterion.cpp" />
     <ClCompile Include="src\solar-physics.cpp" />

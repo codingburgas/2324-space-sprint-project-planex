@@ -116,6 +116,6 @@ std::vector<real> Vector::Vec3::getSpeedAndDirection(Vec3* velocity) {
 }
 
 
-void Vector::Vec3::updatePosition(Vec3* vector, Vec3* velocity, real& time) const {
-	vector->addScaledVector(*velocity, time);
+void Vector::Vec3::updatePosition(Vec3* velocity, real& time) {
+	this->addScaledVector(*velocity, time);
 }

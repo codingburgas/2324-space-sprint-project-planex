@@ -3,23 +3,21 @@
 #include <cmath>
 #include <assert.h>
 #include "vector.hpp"
-
 #define real double
 #define pow powf
-
+#define MATH_PI 3.1415926
 
 namespace Particle {
 
 	class Particle {
-
+	public:
 		const real drag;
 		static real gravity;
 		Vector::Vec3* acceleration;
 		Vector::Vec3* velocity;
 		Vector::Vec3* position;
 		Vector::Vec3* forceAccum;
-		
-		Particle() : drag(0.990) {};
+		Particle() : drag(0.999) {}
 
 
 		//@brief set mass of an object -> returns void
@@ -42,6 +40,8 @@ namespace Particle {
 
 		//@brief adds forces
 		void addForce(Vector::Vec3* vector);
+
+		void celestialVelocity(real gravityConst, real& massParent, real& orbitRadius, real& theta);
 
 		 
 

@@ -44,3 +44,15 @@ void Particle::Particle::clearForces() {
 void Particle::Particle::addForce(Vector::Vec3* vector) {
 	*forceAccum += *vector;
 }
+
+
+void Particle::Particle::celestialVelocity(real gravityConst, real& massParent, real& orbitRadius, real& theta) {
+	gravityConst = Particle::Particle::gravity;
+	real v = sqrt((gravityConst * massParent) / orbitRadius);
+	real vx = v * cos(theta); 
+	real vz = v * sin(theta);
+
+	this->velocity->x = vx;
+	this->velocity->z = vz;
+	this->velocity->y = 0;
+}

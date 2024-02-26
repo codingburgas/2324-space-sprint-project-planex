@@ -1,1 +1,0 @@
-{"type":"module","scripts":{"start":"nodemon server.js"},"dependencies":{"inquirer":"^9.2.15","prompt-sync":"^4.2.0","ws":"^8.16.0"},"optionalDependencies":{"bufferutil":"^4.0.8"},"devDependencies":{"nodemon":"^3.0.3"}}

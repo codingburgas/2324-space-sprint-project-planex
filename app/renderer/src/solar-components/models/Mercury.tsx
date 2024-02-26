@@ -52,8 +52,6 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 
   const groupRef = useRef<THREE.Group>(null);
   const [websocket, setWs] = useState<WebSocket | null>(null);
-  const [currentCoords, setCurrentCoords] = useState<THREE.Vector3>();
-
 
 
 useEffect(() => {
@@ -70,17 +68,13 @@ useEffect(() => {
     };
 }, []);
 
-useFrame(() => {
-    if (websocket && websocket.readyState === WebSocket.OPEN) {
-      if (groupRef.current) 
-        setCurrentCoords(groupRef.current.position.clone());
-      websocket?.send(JSON.stringify({ type: 'mercury', coords: currentCoords }));
-      websocket.onmessage = function (event) {
-          console.log(event.data);
-        }
+  useFrame(() => {
+    if (websocket && websocket.readyState === WebSocket.OPEN && groupRef.current) {
+      const position = groupRef.current.position.clone();
+      const theta = Math.atan2(groupRef.current.position.z, groupRef.current.position.x);
+      websocket.send(JSON.stringify({ type: 'mercury', coords: {x: position.x, y: position.y, z: position.z}, theta: theta}));
     }
-
-});
+  });
 
 
 
