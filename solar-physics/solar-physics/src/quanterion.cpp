@@ -1,7 +1,7 @@
 #include "quanterion.hpp"
 #include "vector.hpp"
 
-real Quanterion::Vec4::getQuaternionMagnitude(Vec4* q) const {
+double Quanterion::Vec4::getQuaternionMagnitude(Vec4* q) const {
     return sqrt(q->w * q->w + q->x * q->x + q->y * q->y + q->z * q->z);
 }
 
@@ -10,7 +10,7 @@ bool Quanterion::Vec4::isUnitQuaternion(Vec4* q) const {
 }
 
 Quanterion::Vec4 Quanterion::Vec4::getNormalizeQuaternion(Vec4* q) const {
-    real magnitude = getQuaternionMagnitude(q);
+    double magnitude = getQuaternionMagnitude(q);
     return Vec4(q->w / magnitude, q->x / magnitude, q->y / magnitude, q->z / magnitude);
 }
 
@@ -23,15 +23,15 @@ Quanterion::Vec4 Quanterion::Vec4::rotateByQuaternion(const Quanterion::Vec4* qu
     );
 }
 
-Quanterion::Vec4 Quanterion::Vec4::rotateByQuaternion(const Quanterion::Vec4* angularVelocity, const real& deltaTime) const {
+Quanterion::Vec4 Quanterion::Vec4::rotateByQuaternion(const Quanterion::Vec4* angularVelocity, const double& deltaTime) const {
 
-    real magnitude = sqrt(angularVelocity->x * angularVelocity->x +
+    double magnitude = sqrt(angularVelocity->x * angularVelocity->x +
         angularVelocity->y * angularVelocity->y +
         angularVelocity->z * angularVelocity->z);
 
-    real halfAngle = magnitude * deltaTime / 2.0;
-    real cosHalfAngle = cos(halfAngle);
-    real sinHalfAngle = sin(halfAngle);
+    double halfAngle = magnitude * deltaTime / 2.0;
+    double cosHalfAngle = cos(halfAngle);
+    double sinHalfAngle = sin(halfAngle);
 
     return Quanterion::Vec4(
         cosHalfAngle,
@@ -45,7 +45,7 @@ Quanterion::Vec4 Quanterion::Vec4::getInverseQuaternion(const Quanterion::Vec4* 
     return Quanterion::Vec4(q->w, -q->x, -q->y, -q->z);
 }
 
-Quanterion::Vec4 Quanterion::Vec4::quanterionFromAxisAngle(const Vector::Vec3* axis, const real& angle) const {
+Quanterion::Vec4 Quanterion::Vec4::quanterionFromAxisAngle(const Vector::Vec3* axis, const double& angle) const {
 
     return Quanterion::Vec4(
         cos(angle / 2.0),
@@ -55,7 +55,7 @@ Quanterion::Vec4 Quanterion::Vec4::quanterionFromAxisAngle(const Vector::Vec3* a
     );
 }
 
-Vector::Vec3 Quanterion::Vec4::rotatePoint(const Vector::Vec3* point, const Vector::Vec3* axis, const real& angle) {
+Vector::Vec3 Quanterion::Vec4::rotatePoint(const Vector::Vec3* point, const Vector::Vec3* axis, const double& angle) {
 
     Quanterion::Vec4* temp = new Quanterion::Vec4(0, 0, 0, 0);
     Quanterion::Vec4 rotation = temp->quanterionFromAxisAngle(axis, angle);
@@ -69,10 +69,10 @@ Vector::Vec3 Quanterion::Vec4::rotatePoint(const Vector::Vec3* point, const Vect
 }
 
 
-Quanterion::Vec4 Quanterion::Vec4::rotatePoint(const Vec4* point, const Vec4* axis, const real& angle) const {
+Quanterion::Vec4 Quanterion::Vec4::rotatePoint(const Vec4* point, const Vec4* axis, const double& angle) const {
 
-    real cosHalfAngle = cos(angle / 2);
-    real sinHalfAngle = sin(angle / 2);
+    double cosHalfAngle = cos(angle / 2);
+    double sinHalfAngle = sin(angle / 2);
 
     Quanterion::Vec4 rotationQuaternion;
     rotationQuaternion.w = cosHalfAngle;

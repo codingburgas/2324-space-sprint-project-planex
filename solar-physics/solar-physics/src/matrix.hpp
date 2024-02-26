@@ -1,5 +1,4 @@
 #pragma once
-#define real double
 
 #include <cmath>
 #include <iostream>
@@ -11,7 +10,7 @@ namespace Matrix {
 
     class Matrix3x4 {
     public:
-        real data[12];
+        double data[12];
 
         Matrix3x4() {
             for (int i = 0; i < 12; ++i)
@@ -31,9 +30,9 @@ namespace Matrix {
         void setInverse(const Matrix3x4& m);
 
     private:
-        real calculateM00(const Quaternion::Vec4& q) const;
-        real calculateM01(const Quaternion::Vec4& q) const;
-        real calculateM02(const Quaternion::Vec4& q) const;
+        double calculateM00(const Quaternion::Vec4& q) const;
+        double calculateM01(const Quaternion::Vec4& q) const;
+        double calculateM02(const Quaternion::Vec4& q) const;
     };
 
 }

@@ -1,5 +1,4 @@
 #pragma once
-#define real double
 
 #include <cmath>
 #include <iostream>
@@ -13,10 +12,10 @@ namespace Quanterion {
     class Vec4 {
 
     public:
-        real x, y, z, w;
+        double x, y, z, w;
 
         // Constructors
-        Vec4(real r, real i, real j, real k) : x(r), y(i), z(j), w(k) {};
+        Vec4(double r, double i, double j, double k) : x(r), y(i), z(j), w(k) {};
         Vec4() : x(0.0), y(0.0), z(0.0), w(0.0) {};
 
 
@@ -25,10 +24,10 @@ namespace Quanterion {
         }
 
         Vec4 operator*(const Vec4& quaternion) const {
-            real qw = this->w * quaternion.w - this->x * quaternion.x - this->y * quaternion.y - this->z * quaternion.z;
-            real qx = this->w * quaternion.x + this->x * quaternion.w + this->y * quaternion.z - this->z * quaternion.y;
-            real qy = this->w * quaternion.y - this->x * quaternion.z + this->y * quaternion.w + this->z * quaternion.x;
-            real qz = this->w * quaternion.z + this->x * quaternion.y - this->y * quaternion.x + this->z * quaternion.w;
+            double qw = this->w * quaternion.w - this->x * quaternion.x - this->y * quaternion.y - this->z * quaternion.z;
+            double qx = this->w * quaternion.x + this->x * quaternion.w + this->y * quaternion.z - this->z * quaternion.y;
+            double qy = this->w * quaternion.y - this->x * quaternion.z + this->y * quaternion.w + this->z * quaternion.x;
+            double qz = this->w * quaternion.z + this->x * quaternion.y - this->y * quaternion.x + this->z * quaternion.w;
             return Vec4(qw, qx, qy, qz);
         }
 
@@ -46,7 +45,7 @@ namespace Quanterion {
             z -= quaternion.z;
         }
 
-        Vec4 operator*(const real& value) const {
+        Vec4 operator*(const double& value) const {
             return Vec4(w * value, x * value, y * value, z * value);
         }
 
@@ -58,11 +57,11 @@ namespace Quanterion {
             return Vec4(w - quaternion.w, x - quaternion.x, y - quaternion.y, z - quaternion.z);
         }
 
-        Vec4 operator/(const real& scalar) const {
+        Vec4 operator/(const double& scalar) const {
             return Vec4(w / scalar, x / scalar, y / scalar, z / scalar);
         }
         //@brief gets the Magnitude of a quaternion
-        real getQuaternionMagnitude(Vec4* q) const;
+        double getQuaternionMagnitude(Vec4* q) const;
 
         //@brief is the quaternion a unit
         bool isUnitQuaternion(Vec4* q) const;
@@ -72,13 +71,13 @@ namespace Quanterion {
 
         Vec4 rotateByQuaternion(const Quanterion::Vec4* quaternion) const;
 
-        Vec4 rotateByQuaternion(const Vec4* angularVelocity, const real& deltaTime) const;
+        Vec4 rotateByQuaternion(const Vec4* angularVelocity, const double& deltaTime) const;
 
         Vec4 getInverseQuaternion(const Vec4* q) const;
 
-        Vec4 rotatePoint(const Vec4* point, const Vec4* axis, const real& angle) const;
-        Vec4 quanterionFromAxisAngle(const Vector::Vec3* axis, const real& angle) const;
-        Vector::Vec3 rotatePoint(const Vector::Vec3* point, const Vector::Vec3* axis, const real& angle);
+        Vec4 rotatePoint(const Vec4* point, const Vec4* axis, const double& angle) const;
+        Vec4 quanterionFromAxisAngle(const Vector::Vec3* axis, const double& angle) const;
+        Vector::Vec3 rotatePoint(const Vector::Vec3* point, const Vector::Vec3* axis, const double& angle);
 
     };
 }
