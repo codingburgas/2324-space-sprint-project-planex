@@ -8,9 +8,10 @@ Title: Planet Uranus
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 type GLTFResult = GLTF & {
   nodes: {
     rings_lambert3_0: THREE.Mesh
@@ -55,12 +56,43 @@ interface GLTFAction extends THREE.AnimationClip {
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
-  const group = useRef<THREE.Group>()
+
+  const groupRef = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF('../../../public/uranus.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, groupRef)
+
+
+  const [websocket, setWs] = useState<WebSocket | null>(null);
+  const [currentCoords, setCurrentCoords] = useState<THREE.Vector3>();
+
+
+
+useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000');
+
+    ws.addEventListener("open", (event) => {
+        ws.send("Connection established");
+    });
+
+    setWs(ws);
+
+    return () => {
+        ws.close();
+    };
+}, []);
+
+useFrame(() => {
+    if (websocket && websocket.readyState === WebSocket.OPEN) {
+      if (groupRef.current) 
+        setCurrentCoords(groupRef.current.position.clone());
+    }
+    websocket?.send(JSON.stringify({ type: 'uranus', coords: currentCoords }));
+});
+
+
   return (
     <group>
-      <group ref={group} {...props} dispose={null} position={[-330, 0, 0]} >
+      <group ref={groupRef} {...props} dispose={null} position={[-330, 0, 0]} >
         <group name="Sketchfab_Scene">
           <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
             <group name="f029815b00e641df84e4fa9461089ab2fbx" rotation={[Math.PI / 2, 0, 0]} scale={3}>
@@ -87,7 +119,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         </group>
       </group>
       <line geometry={CircleGeometry(450, 64, new THREE.Vector3(120, 0, 0))}>
-        <lineBasicMaterial color={`#efefef`} transparent opacity={2} />
+        <lineBasicMaterial color={`#ADAAA8 `} transparent opacity={0.5} />
       </line>
     </group>
   )

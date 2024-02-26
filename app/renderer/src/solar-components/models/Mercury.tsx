@@ -8,9 +8,10 @@ Title: Mercury Realistic 8K
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -46,18 +47,49 @@ function CircleGeometry(radius: number, segments: number, center: THREE.Vector3)
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
+
   const { nodes, materials } = useGLTF('../../../public/mercury.glb') as GLTFResult
+
+  const groupRef = useRef<THREE.Group>(null);
+  const [websocket, setWs] = useState<WebSocket | null>(null);
+  const [currentCoords, setCurrentCoords] = useState<THREE.Vector3>();
+
+
+
+useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000');
+
+    ws.addEventListener("open", (event) => {
+        ws.send("Connection established");
+    });
+
+    setWs(ws);
+
+    return () => {
+        ws.close();
+    };
+}, []);
+
+useFrame(() => {
+    if (websocket && websocket.readyState === WebSocket.OPEN) {
+      if (groupRef.current) 
+        setCurrentCoords(groupRef.current.position.clone());
+    }
+    websocket?.send(JSON.stringify({ type: 'mercury', coords: currentCoords }));
+});
+
+
+
   return (
     <group>
-      <group {...props} dispose={null} position={[60, 0, 0]}>
+      <group {...props} dispose={null} position={[60, 0, 0]} ref={groupRef}>
         <group scale={0.01}>
-          {/* <mesh geometry={nodes.venus_Material001_0.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={500} /> */}
           <mesh geometry={nodes.atmosphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={320}  castShadow 
               receiveShadow />
         </group>
       </group>
       <line geometry={CircleGeometry(60, 64, new THREE.Vector3(120, 0, 0))}>
-        <lineBasicMaterial color='blue' transparent opacity={2} />
+        <lineBasicMaterial color={`#ADAAA8 `} transparent opacity={0.5} />
       </line>
     </group>
   )

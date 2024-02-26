@@ -1,7 +1,8 @@
 import * as THREE from 'three'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -44,11 +45,42 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 const groupScale = 0.07;
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
+
   const { nodes, materials } = useGLTF('../../../public/saturn.glb') as GLTFResult
+
+
+    const groupRef = useRef<THREE.Group>(null);
+  const [websocket, setWs] = useState<WebSocket | null>(null);
+  const [currentCoords, setCurrentCoords] = useState<THREE.Vector3>();
+
+
+
+useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000');
+
+    ws.addEventListener("open", (event) => {
+        ws.send("Connection established");
+    });
+
+    setWs(ws);
+
+    return () => {
+        ws.close();
+    };
+}, []);
+
+useFrame(() => {
+    if (websocket && websocket.readyState === WebSocket.OPEN) {
+      if (groupRef.current) 
+        setCurrentCoords(groupRef.current.position.clone());
+    }
+    websocket?.send(JSON.stringify({ type: 'saturn', coords: currentCoords }));
+});
+
 
   return (
     <group>
-      <group {...props} dispose={null} position={[-240, 0, 0]} scale={[groupScale, groupScale, groupScale]}>
+      <group {...props} dispose={null} position={[-240, 0, 0]} scale={[groupScale, groupScale, groupScale]} ref={groupRef}>
         <group rotation={[-Math.PI / 2, 0, 0]} userData={{ name: 'saturn.3ds' }}>
           <group position={[-0.484, -3.627, 0]} rotation={[-1.571, -1.386, 0.001]} scale={220.595} userData={{ name: 'Circle' }}>
             <group userData={{ name: 'TooBig2' }}>
@@ -85,7 +117,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         </group>
       </group>
       <line geometry={CircleGeometry(360, 64, new THREE.Vector3(120, 0, 0))}>
-        <lineBasicMaterial color='blue' transparent opacity={2} />
+        <lineBasicMaterial color={`#ADAAA8 `} transparent opacity={0.5} />
       </line>
     </group>
   )

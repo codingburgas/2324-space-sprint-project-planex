@@ -7,9 +7,10 @@ Source: https://sketchfab.com/3d-models/pluto-0840325e536d47bdb6ed4b867d55b5c1
 Title: Pluto
 */
 import * as THREE from 'three'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -43,15 +44,47 @@ function CircleGeometry(radius: number, segments: number, center: THREE.Vector3)
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
+
   const { nodes, materials } = useGLTF('../../../public/pluto.glb') as GLTFResult
+
+
+  const groupRef = useRef<THREE.Group>(null);
+  const [websocket, setWs] = useState<WebSocket | null>(null);
+  const [currentCoords, setCurrentCoords] = useState<THREE.Vector3>();
+
+
+
+useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000');
+
+    ws.addEventListener("open", (event) => {
+        ws.send("Connection established");
+    });
+
+    setWs(ws);
+
+    return () => {
+        ws.close();
+    };
+}, []);
+
+useFrame(() => {
+    if (websocket && websocket.readyState === WebSocket.OPEN) {
+      if (groupRef.current) 
+        setCurrentCoords(groupRef.current.position.clone());
+    }
+    websocket?.send(JSON.stringify({ type: 'pluto', coords: currentCoords }));
+});
+
+
   return (
     <group>
-      <group {...props} dispose={null}>
+      <group {...props} dispose={null} ref={groupRef} >
         <mesh geometry={nodes.Object_4.geometry} material={materials['Scene_-_Root']} scale={5.28} userData={{ name: 'Object_4' }} position={[-450, 0, 0]}  castShadow 
-              receiveShadow />
+              receiveShadow/>
       </group>
       <line geometry={CircleGeometry(570, 64, new THREE.Vector3(120, 0, 0))}>
-        <lineBasicMaterial color='blue' transparent opacity={2} />
+        <lineBasicMaterial color={`#ADAAA8 `} transparent opacity={0.5} />
       </line>
     </group>
   )

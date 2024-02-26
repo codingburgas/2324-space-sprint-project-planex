@@ -8,9 +8,10 @@ Title: Neptuno
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 type GLTFResult = GLTF & {
   nodes: {
     Esfera_Mat1_0: THREE.Mesh
@@ -57,9 +58,38 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const groupScale = 0.05;
   const sphereScale = 1;
 
+
+    const groupRef = useRef<THREE.Group>(null);
+  const [websocket, setWs] = useState<WebSocket | null>(null);
+  const [currentCoords, setCurrentCoords] = useState<THREE.Vector3>();
+
+
+
+useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8000');
+
+    ws.addEventListener("open", (event) => {
+        ws.send("Connection established");
+    });
+
+    setWs(ws);
+
+    return () => {
+        ws.close();
+    };
+}, []);
+
+useFrame(() => {
+    if (websocket && websocket.readyState === WebSocket.OPEN) {
+      if (groupRef.current) 
+        setCurrentCoords(groupRef.current.position.clone());
+    }
+    websocket?.send(JSON.stringify({ type: 'neptune', coords: currentCoords }));
+});
+
   return (
     <group>
-      <group {...props} dispose={null} position={[-400, 0, 0]} scale={[groupScale, groupScale, groupScale]}>
+      <group {...props} dispose={null} position={[-400, 0, 0]} scale={[groupScale, groupScale, groupScale]} ref={groupRef}>
         <group rotation={[-2.967, 1.045, -Math.PI]}>
           <mesh geometry={nodes.Esfera_Mat1_0.geometry} material={materials['Mat.1']}  castShadow 
               receiveShadow />
@@ -84,7 +114,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
         </group>
       </group>
       <line geometry={CircleGeometry(520, 64, new THREE.Vector3(120, 0, 0))}>
-        <lineBasicMaterial color='blue' transparent opacity={2} />
+        <lineBasicMaterial color={`#ADAAA8 `} transparent opacity={0.5} />
       </line>
     </group>
   )
