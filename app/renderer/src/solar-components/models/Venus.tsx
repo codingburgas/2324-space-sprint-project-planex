@@ -73,15 +73,19 @@ useFrame(() => {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
       if (groupRef.current) 
         setCurrentCoords(groupRef.current.position.clone());
+      websocket?.send(JSON.stringify({ type: 'venus', coords: currentCoords }));
+      websocket.onmessage = function (event) {
+          console.log(event.data);
+        }
     }
-    websocket?.send(JSON.stringify({ type: 'venus', coords: currentCoords }));
+    
 });
 
 
   
   return (
     <group>
-      <group {...props} dispose={null} position={[10, 0, 0]} ref={groupRef}>
+      <group {...props} dispose={null} position={[0, 0, 0]} ref={groupRef}>
       <group scale={0.01}>
         <mesh geometry={nodes.venus_Material001_0.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={350}  castShadow 
               receiveShadow/>

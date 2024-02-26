@@ -73,8 +73,12 @@ useFrame(() => {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
       if (groupRef.current) 
         setCurrentCoords(groupRef.current.position.clone());
+      websocket?.send(JSON.stringify({ type: 'saturn', coords: currentCoords }));
+      websocket.onmessage = function (event) {
+          console.log(event.data);
+        }
     }
-    websocket?.send(JSON.stringify({ type: 'saturn', coords: currentCoords }));
+    
 });
 
 

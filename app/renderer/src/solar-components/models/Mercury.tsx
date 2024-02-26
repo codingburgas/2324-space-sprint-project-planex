@@ -8,7 +8,7 @@ Title: Mercury Realistic 8K
 */
 
 import * as THREE from 'three'
-import React, { useEffect, useRef, useState, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import { useFrame } from '@react-three/fiber'
@@ -74,8 +74,12 @@ useFrame(() => {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
       if (groupRef.current) 
         setCurrentCoords(groupRef.current.position.clone());
+      websocket?.send(JSON.stringify({ type: 'mercury', coords: currentCoords }));
+      websocket.onmessage = function (event) {
+          console.log(event.data);
+        }
     }
-    websocket?.send(JSON.stringify({ type: 'mercury', coords: currentCoords }));
+
 });
 
 
