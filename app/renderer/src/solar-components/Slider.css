@@ -1,0 +1,28 @@
+.fancy-slider {
+    position: fixed;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.1%;
+    width: 20%;
+    margin-top: 43%;
+    z-index: 999;
+    background-image: url('../../public/stars.png');
+    background-size: cover;
+  }
+  
+  .slider-input {
+    width: 50%;
+  }
+  
+  .year {
+    margin-top: 5px;
+  }
+  .year
+  {
+    z-index: 999;
+    font-size:50px;
+    color: white;
+    margin-top: -20%;
+}
