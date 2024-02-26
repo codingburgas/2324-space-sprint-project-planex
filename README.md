@@ -7,7 +7,7 @@
 <br>
 
 ## 💻 About
-<p align="center">This is our take on the 2024 9th grade project about "Physics and Astrology". It's a sandbox app, containing the Solar System, with a tailored physics engine <b>you</b> can play with.
+<p align="center">This is our take on the 2024 9th grade project about "Physics and Astrology". It's a realistic simulation visualisation, containing the Solar System
 </p>
 <p align="center">
 
