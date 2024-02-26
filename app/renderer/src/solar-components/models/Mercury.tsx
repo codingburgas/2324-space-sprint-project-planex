@@ -52,7 +52,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 
   const groupRef = useRef<THREE.Group>(null);
   const [websocket, setWs] = useState<WebSocket | null>(null);
-
+  const [positionData, setPositionData] = useState({x: 60, y: 0, z: 0});
 
 useEffect(() => {
     const ws = new WebSocket('ws://localhost:8000');
@@ -61,6 +61,13 @@ useEffect(() => {
         ws.send("Connection established");
     });
 
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+        if (data.type === "mercury"){
+          setPositionData(data.coords);
+        }
+      }
+
     setWs(ws);
 
     return () => {
@@ -68,19 +75,24 @@ useEffect(() => {
     };
 }, []);
 
+
+
+
+
   useFrame(() => {
+
     if (websocket && websocket.readyState === WebSocket.OPEN && groupRef.current) {
       const position = groupRef.current.position.clone();
       const theta = Math.atan2(groupRef.current.position.z, groupRef.current.position.x);
-      websocket.send(JSON.stringify({ type: 'mercury', coords: {x: position.x, y: position.y, z: position.z}, theta: theta}));
+      websocket.send(JSON.stringify({ type: 'mercury', coords: {x: position.x, y: 0, z: position.z}, theta: theta}));
+      groupRef.current.position.set(positionData.x, positionData.y, positionData.z);
     }
-  });
-
+});
 
 
   return (
     <group>
-      <group {...props} dispose={null} position={[60, 0, 0]} ref={groupRef}>
+      <group {...props} dispose={null} position={[positionData.x, positionData.y, positionData.z]} ref={groupRef}>
         <group scale={0.01}>
           <mesh geometry={nodes.atmosphere_Material_0.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} scale={320}  castShadow 
               receiveShadow />

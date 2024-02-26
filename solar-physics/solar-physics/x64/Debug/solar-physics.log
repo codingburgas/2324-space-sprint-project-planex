@@ -1,11 +1,1 @@
-﻿  memory.cpp
-  particle.cpp
-  quanterion.cpp
-  solar-physics.cpp
-C:\Users\anton\source\repos\2324-space-sprint-project-planex\solar-physics\include\websocketpp\frame.hpp(834,25): warning C4267: '=': conversion from 'size_t' to 'uint32_t', possible loss of data
-C:\Users\anton\source\repos\2324-space-sprint-project-planex\solar-physics\include\websocketpp\common\md5.hpp(367,29): warning C4267: '+=': conversion from 'size_t' to 'websocketpp::md5::md5_word_t', possible loss of data
-C:\Users\anton\source\repos\2324-space-sprint-project-planex\solar-physics\include\websocketpp\sha1\sha1.hpp(176,28): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
-  utils.hpp
-  vector.cpp
-  Generating Code...
-  solar-physics.vcxproj -> C:\Users\anton\source\repos\2324-space-sprint-project-planex\solar-physics\x64\Debug\solar-physics.exe
+﻿  solar-physics.vcxproj -> C:\Users\pomelo\Downloads\2324-space-sprint-project-planex\solar-physics\x64\Debug\solar-physics.exe
