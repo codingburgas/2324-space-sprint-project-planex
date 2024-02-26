@@ -1,41 +1,41 @@
 #include "vector.hpp"
 
-void Vector::Vec3::invert(Vec3* vector) const {
-	vector->x = -(vector->x);
-	vector->y = -(vector->y);
-	vector->z = -(vector->z);
+void Vector::Vec3::invert(Vec3& vector) const {
+	vector.x = -(vector.x);
+	vector.y = -(vector.y);
+	vector.z = -(vector.z);
 }
 
-double Vector::Vec3::getMagnitude3D(const Vec3* vector) {
-	return sqrt(vector->x * vector->x + vector->y * vector->y + vector->z * vector->z);
+real Vector::Vec3::getMagnitude3D(const Vec3& vector) {
+	return sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 }
 
-void Vector::Vec3::toUnitVector(Vec3* vector) {
-	double magnitude = vector->getMagnitude3D(vector);
-	vector->normalised = true;
+void Vector::Vec3::toUnitVector(Vec3& vector) {
+	real magnitude = vector.getMagnitude3D(vector);
+	vector.normalised = true;
 
 	if (magnitude > 0) {
-		vector->x = ((vector->x) / magnitude);
-		vector->y = ((vector->y) / magnitude);
-		vector->z = ((vector->z) / magnitude);
+		vector.x = ((vector.x) / magnitude);
+		vector.y = ((vector.y) / magnitude);
+		vector.z = ((vector.z) / magnitude);
 	}
 	else
-		vector->x = 0, vector->y = 0, vector->z = 0;
+		vector.x = 0, vector.y = 0, vector.z = 0;
 }
 
-Vector::Vec3 Vector::Vec3::getChangePosVec3(const Vec3* vector1, const Vec3* vector2) const {
-	return Vec3(fabs(vector1->x - vector2->x), fabs(vector1->y - vector2->y), fabs(vector1->z - vector2->z));
+Vector::Vec3 Vector::Vec3::getChangePosVec3(const Vec3& vector1, const Vec3& vector2) const {
+	return Vec3(fabs(vector1.x - vector2.x), fabs(vector1.y - vector2.y), fabs(vector1.z - vector2.z));
 }
 
-double Vector::Vec3::scalarProduct(Vec3* vector1, const Vec3* vector2) const {
-	return (vector1->x * vector2->x) + (vector1->y * vector2->y) + (vector1->z * vector2->z);
+real Vector::Vec3::scalarProduct(Vec3& vector1, const Vec3& vector2) const {
+	return (vector1.x * vector2.x) + (vector1.y * vector2.y) + (vector1.z * vector2.z);
 }
 
-Vector::Vec3 Vector::Vec3::crossProduct(Vec3* vector1, Vec3* vector2) const {
+Vector::Vec3 Vector::Vec3::crossProduct(Vec3& vector1, Vec3& vector2) const {
 
-	double* x = new double((vector1->y * vector2->z) - (vector1->z * vector2->y));
-	double* y = new double((vector1->z * vector2->x) - (vector1->x * vector2->z));
-	double* z = new double((vector1->x * vector2->y) - (vector1->y * vector2->x));
+	real* x = new real((vector1.y * vector2.z) - (vector1.z * vector2.y));
+	real* y = new real((vector1.z * vector2.x) - (vector1.x * vector2.z));
+	real* z = new real((vector1.x * vector2.y) - (vector1.y * vector2.x));
 	Vec3 res(*x, *y, *z);
 	delete x, y, z;
 
@@ -43,51 +43,51 @@ Vector::Vec3 Vector::Vec3::crossProduct(Vec3* vector1, Vec3* vector2) const {
 
 }
 
-double Vector::Vec3::getTrigonometryScalar(Vec3* vector1, Vec3* vector2, double& relationalDegree) {
+real Vector::Vec3::getTrigonometryScalar(Vec3& vector1, Vec3& vector2, real& relationalDegree) {
 
-	auto mag1 = vector1->getMagnitude3D(vector1), mag2 = vector2->getMagnitude3D(vector2);
+	auto mag1 = vector1.getMagnitude3D(vector1), mag2 = vector2.getMagnitude3D(vector2);
 
-	if (vector1->normalised == true and vector2->normalised == true)
+	if (vector1.normalised == true and vector2.normalised == true)
 		return cos(relationalDegree);
 
-	else if (vector1->normalised == true and vector2->normalised == false)
+	else if (vector1.normalised == true and vector2.normalised == false)
 		return mag2 * cos(relationalDegree);
 
 	return (mag1 * mag2 * cos(relationalDegree));
 }
 
-double Vector::Vec3::getTrigonometryCross(Vec3* vector1, Vec3* vector2, double& relationalDegree) {
+real Vector::Vec3::getTrigonometryCross(Vec3& vector1, Vec3& vector2, real& relationalDegree) {
 
-	auto mag1 = vector1->getMagnitude3D(vector1), mag2 = vector2->getMagnitude3D(vector2);
+	auto mag1 = vector1.getMagnitude3D(vector1), mag2 = vector2.getMagnitude3D(vector2);
 
-	if (vector1->normalised == true and vector2->normalised == true)
+	if (vector1.normalised == true and vector2.normalised == true)
 		return sin(relationalDegree);
 
-	else if (vector1->normalised == true and vector2->normalised == false)
+	else if (vector1.normalised == true and vector2.normalised == false)
 		return mag2 * sin(relationalDegree);
 
 	return (mag1 * mag2 * sin(relationalDegree));
 }
 
-std::vector<Vector::Vec3> Vector::Vec3::orthonormalBasis(Vec3* vector1, Vec3* vector2) {
+std::vector<Vector::Vec3> Vector::Vec3::orthonormalBasis(Vec3& vector1, Vec3& vector2) {
 
-	auto product1 = new Vec3(vector1->crossProduct(vector1, vector2));
-	Vec3* vector3 = product1;
+	auto product1 = new Vec3(vector1.crossProduct(vector1, vector2));
+	Vec3& vector3 = *product1;
 
-	if (vector1->getMagnitude3D(vector3) == 0)
+	if (vector1.getMagnitude3D(vector3) == 0)
 		return std::vector<Vec3>{0};
 
-	auto product2 = new Vec3(vector1->crossProduct(vector3, vector1));
-	vector2 = product2;
-	vector1->toUnitVector(vector1), vector2->toUnitVector(vector2), vector3->toUnitVector(vector3);
-	std::vector<Vec3> orthonormalBasis{ *(vector1), *(vector2), *(vector3) };
+	auto product2 = new Vec3(vector1.crossProduct(vector3, vector1));
+	vector2 = *product2;
+	vector1.toUnitVector(vector1), vector2.toUnitVector(vector2), vector3.toUnitVector(vector3);
+	std::vector<Vec3> orthonormalBasis{ vector1, vector2, vector3};
 
 	delete product1, product2;
 	return orthonormalBasis;
 }
 
-Vector::Vec3 Vector::Vec3::getVelocity(Vec3* vector1, Vec3* vector2, double& timePassed){
-	auto changedPos = vector1->getChangePosVec3(vector1, vector2);
+Vector::Vec3 Vector::Vec3::getVelocity(Vec3& vector1, Vec3& vector2, real& timePassed){
+	auto changedPos = vector1.getChangePosVec3(vector1, vector2);
 	auto& velocity = changedPos;
 
 	velocity.x = velocity.x / timePassed;
@@ -98,24 +98,24 @@ Vector::Vec3 Vector::Vec3::getVelocity(Vec3* vector1, Vec3* vector2, double& tim
 
 }
 
-Vector::Vec3 Vector::Vec3::getAcceleration(Vec3* pos1, Vec3* pos2, double timePassed, Vec3* startVelocity){
+Vector::Vec3 Vector::Vec3::getAcceleration(Vec3& pos1, Vec3& pos2, real timePassed, Vec3& startVelocity){
 
-		auto velocity = pos1->getVelocity(pos1, pos2, timePassed);
+		auto velocity = pos1.getVelocity(pos1, pos2, timePassed);
 		Vec3 endVelocity (velocity.x * timePassed, velocity.y * timePassed, velocity.z * timePassed);
-		Vec3 deltaV (endVelocity.x - startVelocity->x, endVelocity.y - startVelocity->y, endVelocity.z - startVelocity->z);
+		Vec3 deltaV (endVelocity.x - startVelocity.x, endVelocity.y - startVelocity.y, endVelocity.z - startVelocity.z);
 			 
 		return Vec3(deltaV.x / timePassed, deltaV.y / timePassed, deltaV.z / timePassed);
 }
 
 
-std::vector<double> Vector::Vec3::getSpeedAndDirection(Vec3* velocity) {
-	auto speed = velocity->getMagnitude3D(velocity);
-	velocity->toUnitVector(velocity);
-	std::vector<double> utils{ velocity->x, velocity->y, velocity->z, speed };
+std::vector<real> Vector::Vec3::getSpeedAndDirection(Vec3& velocity) {
+	auto speed = velocity.getMagnitude3D(velocity);
+	velocity.toUnitVector(velocity);
+	std::vector<real> utils{ velocity.x, velocity.y, velocity.z, speed };
 	return utils;
 }
 
 
-void Vector::Vec3::updatePosition(Vec3* velocity, double& time) {
-	this->addScaledVector(*velocity, time);
+void Vector::Vec3::updatePosition(Vec3& velocity, real& time) {
+	this->addScaledVector(velocity, time);
 }

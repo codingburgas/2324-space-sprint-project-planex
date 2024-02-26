@@ -44,24 +44,24 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
 
         std::string planetType = parsedMessage["type"];
         json coords = parsedMessage["coords"];
-        double theta = parsedMessage["theta"];
+        real theta = parsedMessage["theta"];
 
         if (planetType == "mercury") {
             Particle::Particle mercury;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
-            double orbitRadius = 120;
-            double sunMass = 500; 
-            double gravityConst = 40;
-            double deltaT = 0.1;
+            real orbitRadius = 60;
+            real sunMass = 500; 
+            real gravityConst = 40;
+            real deltaT = 0.1;
 
-            mercury.celestialVelocity(gravityConst, sunMass, orbitRadius, theta);
+            mercury.celestialVelocity(mercury,gravityConst, sunMass, orbitRadius, theta);
             auto velocity = mercury.velocity;
             
             currentPos.updatePosition(velocity, deltaT);
             json positionJson = {
             {"x", currentPos.x},
-            {"y", currentPos.y},
+            {"y", 0},
             {"z", currentPos.z}
             };
             mercuryData["coords"] = positionJson;
@@ -70,35 +70,195 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             response = mercuryData;
         }
         else if (planetType == "venus") {
-            venusData = parsedMessage;
+
+            Particle::Particle venus;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 120;
+            real sunMass = 500;
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            venus.celestialVelocity(venus, gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = venus.velocity;
+
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", 0},
+            {"z", currentPos.z}
+            };
+            venusData["coords"] = positionJson;
+            venusData["type"] = "venus";
+
             response = venusData;
         }
         else if (planetType == "earth") {
-            earthData = parsedMessage;
+            Particle::Particle earth;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 160;
+            real sunMass = 500;
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            earth.celestialVelocity(earth, gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = earth.velocity;
+
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", 0},
+            {"z", currentPos.z}
+            };
+            earthData["coords"] = positionJson;
+            earthData["type"] = "earth";
+
             response = earthData;
+            
         }
+
         else if (planetType == "mars") {
-            marsData = parsedMessage;
+            Particle::Particle mars;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 205;
+            real sunMass = 500;
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            mars.celestialVelocity(mars, gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = mars.velocity;
+
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", 0},
+            {"z", currentPos.z}
+            };
+            marsData["coords"] = positionJson;
+            marsData["type"] = "mars";
+
             response = marsData;
+
         }
+
         else if (planetType == "neptune") {
-            neptuneData = parsedMessage;
+
+            Particle::Particle neptune;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 520;
+            real sunMass = 500;
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            neptune.celestialVelocity(neptune, gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = neptune.velocity;
+
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", 0},
+            {"z", currentPos.z}
+            };
+            neptuneData["coords"] = positionJson;
+            neptuneData["type"] = "neptune";
+
             response = neptuneData;
+
         }
         else if (planetType == "pluto") {
-            plutoData = parsedMessage;
+
+            Particle::Particle pluto;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 570;
+            real sunMass = 500;
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            pluto.celestialVelocity(pluto, gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = pluto.velocity;
+
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", 0},
+            {"z", currentPos.z}
+            };
+            plutoData["coords"] = positionJson;
+            plutoData["type"] = "pluto";
+
             response = plutoData;
+
         }
+
         else if (planetType == "saturn") {
-            saturnData = parsedMessage;
+            Particle::Particle saturn;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 360;
+            real sunMass = 500;
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            saturn.celestialVelocity(saturn, gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = saturn.velocity;
+
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", 0},
+            {"z", currentPos.z}
+            };
+            saturnData["coords"] = positionJson;
+            saturnData["type"] = "saturn";
+
             response = saturnData;
         }
         else if (planetType == "jupiter") {
-            jupiterData = parsedMessage;
+            Particle::Particle jupiter;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 205;
+            real sunMass = 500;
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            jupiter.celestialVelocity(jupiter, gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = jupiter.velocity;
+
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", 0},
+            {"z", currentPos.z}
+            };
+            jupiterData["coords"] = positionJson;
+            jupiterData["type"] = "jupiter";
             response = jupiterData;
         }
         else if (planetType == "uranus") {
-            uranusData = parsedMessage;
+            Particle::Particle uranus;
+            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+
+            real orbitRadius = 450;
+            real sunMass = 500;
+            real gravityConst = 40;
+            real deltaT = 0.1;
+
+            uranus.celestialVelocity(uranus, gravityConst, sunMass, orbitRadius, theta);
+            auto velocity = uranus.velocity;
+
+            currentPos.updatePosition(velocity, deltaT);
+            json positionJson = {
+            {"x", currentPos.x},
+            {"y", 0},
+            {"z", currentPos.z}
+            };
+            uranusData["coords"] = positionJson;
+            uranusData["type"] = "uranus";
             response = uranusData;
         }
         else {

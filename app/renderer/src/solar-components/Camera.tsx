@@ -22,7 +22,7 @@ const CustomCameraControls = () => {
     if (!controlsRef.current) {
     const controls : CameraControls = new CameraControls(camera, gl.domElement);
 
-    controls.setPosition(0, 10, 5);
+    controls.setPosition(0, 100, 20);
     controls.mouseButtons.right = CameraControls.ACTION.TRUCK;
     controls.mouseButtons.left = CameraControls.ACTION.TRUCK;
 
