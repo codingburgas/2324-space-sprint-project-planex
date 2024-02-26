@@ -1,27 +1,27 @@
 #include "particle.hpp"
 
-real Particle::Particle::gravity = 40;
+double Particle::Particle::gravity = 40;
 
-void Particle::Particle::setMass(Particle* particle, real& mass) {
+void Particle::Particle::setMass(Particle* particle, double& mass) {
 	particle->mass = mass;
 }
 
-void Particle::Particle::setInversedMass(Particle* particle, real& mass) {
+void Particle::Particle::setInversedMass(Particle* particle, double& mass) {
 	particle->inversedMass = 1 / mass;
 }
 
-real Particle::Particle::gravitationalPull(Particle* particle, real& gravity = Particle::Particle::gravity) const {
+double Particle::Particle::gravitationalPull(Particle* particle, double& gravity = Particle::Particle::gravity) const {
 	return particle->mass * gravity;
 }
 
-auto Particle::Particle::positionUpdateParticle(Particle* particle, real& time) const {
+auto Particle::Particle::positionUpdateParticle(Particle* particle, double& time) const {
 
 	particle->position->addScaledVector(*(particle->velocity), time);
 	particle->position->addScaledVector(*(particle->acceleration), time * time * 0.5);
 
 }
 
-void Particle::Particle::updateVelocity(real& time) {
+void Particle::Particle::updateVelocity(double& time) {
 
 	assert(time > 0.000);
 
@@ -46,11 +46,11 @@ void Particle::Particle::addForce(Vector::Vec3* vector) {
 }
 
 
-void Particle::Particle::celestialVelocity(real gravityConst, real& massParent, real& orbitRadius, real& theta) {
+void Particle::Particle::celestialVelocity(double gravityConst, double& massParent, double& orbitRadius, double& theta) {
 	gravityConst = Particle::Particle::gravity;
-	real v = sqrt((gravityConst * massParent) / orbitRadius);
-	real vx = v * cos(theta); 
-	real vz = v * sin(theta);
+	double v = sqrt((gravityConst * massParent) / orbitRadius);
+	double vx = v * cos(theta); 
+	double vz = v * sin(theta);
 
 	this->velocity->x = vx;
 	this->velocity->z = vz;

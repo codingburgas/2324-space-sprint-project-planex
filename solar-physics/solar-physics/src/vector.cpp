@@ -6,12 +6,12 @@ void Vector::Vec3::invert(Vec3* vector) const {
 	vector->z = -(vector->z);
 }
 
-real Vector::Vec3::getMagnitude3D(const Vec3* vector) {
+double Vector::Vec3::getMagnitude3D(const Vec3* vector) {
 	return sqrt(vector->x * vector->x + vector->y * vector->y + vector->z * vector->z);
 }
 
 void Vector::Vec3::toUnitVector(Vec3* vector) {
-	real magnitude = vector->getMagnitude3D(vector);
+	double magnitude = vector->getMagnitude3D(vector);
 	vector->normalised = true;
 
 	if (magnitude > 0) {
@@ -27,15 +27,15 @@ Vector::Vec3 Vector::Vec3::getChangePosVec3(const Vec3* vector1, const Vec3* vec
 	return Vec3(fabs(vector1->x - vector2->x), fabs(vector1->y - vector2->y), fabs(vector1->z - vector2->z));
 }
 
-real Vector::Vec3::scalarProduct(Vec3* vector1, const Vec3* vector2) const {
+double Vector::Vec3::scalarProduct(Vec3* vector1, const Vec3* vector2) const {
 	return (vector1->x * vector2->x) + (vector1->y * vector2->y) + (vector1->z * vector2->z);
 }
 
 Vector::Vec3 Vector::Vec3::crossProduct(Vec3* vector1, Vec3* vector2) const {
 
-	real* x = new real((vector1->y * vector2->z) - (vector1->z * vector2->y));
-	real* y = new real((vector1->z * vector2->x) - (vector1->x * vector2->z));
-	real* z = new real((vector1->x * vector2->y) - (vector1->y * vector2->x));
+	double* x = new double((vector1->y * vector2->z) - (vector1->z * vector2->y));
+	double* y = new double((vector1->z * vector2->x) - (vector1->x * vector2->z));
+	double* z = new double((vector1->x * vector2->y) - (vector1->y * vector2->x));
 	Vec3 res(*x, *y, *z);
 	delete x, y, z;
 
@@ -43,7 +43,7 @@ Vector::Vec3 Vector::Vec3::crossProduct(Vec3* vector1, Vec3* vector2) const {
 
 }
 
-real Vector::Vec3::getTrigonometryScalar(Vec3* vector1, Vec3* vector2, real& relationalDegree) {
+double Vector::Vec3::getTrigonometryScalar(Vec3* vector1, Vec3* vector2, double& relationalDegree) {
 
 	auto mag1 = vector1->getMagnitude3D(vector1), mag2 = vector2->getMagnitude3D(vector2);
 
@@ -56,7 +56,7 @@ real Vector::Vec3::getTrigonometryScalar(Vec3* vector1, Vec3* vector2, real& rel
 	return (mag1 * mag2 * cos(relationalDegree));
 }
 
-real Vector::Vec3::getTrigonometryCross(Vec3* vector1, Vec3* vector2, real& relationalDegree) {
+double Vector::Vec3::getTrigonometryCross(Vec3* vector1, Vec3* vector2, double& relationalDegree) {
 
 	auto mag1 = vector1->getMagnitude3D(vector1), mag2 = vector2->getMagnitude3D(vector2);
 
@@ -86,7 +86,7 @@ std::vector<Vector::Vec3> Vector::Vec3::orthonormalBasis(Vec3* vector1, Vec3* ve
 	return orthonormalBasis;
 }
 
-Vector::Vec3 Vector::Vec3::getVelocity(Vec3* vector1, Vec3* vector2, real& timePassed){
+Vector::Vec3 Vector::Vec3::getVelocity(Vec3* vector1, Vec3* vector2, double& timePassed){
 	auto changedPos = vector1->getChangePosVec3(vector1, vector2);
 	auto& velocity = changedPos;
 
@@ -98,7 +98,7 @@ Vector::Vec3 Vector::Vec3::getVelocity(Vec3* vector1, Vec3* vector2, real& timeP
 
 }
 
-Vector::Vec3 Vector::Vec3::getAcceleration(Vec3* pos1, Vec3* pos2, real timePassed, Vec3* startVelocity){
+Vector::Vec3 Vector::Vec3::getAcceleration(Vec3* pos1, Vec3* pos2, double timePassed, Vec3* startVelocity){
 
 		auto velocity = pos1->getVelocity(pos1, pos2, timePassed);
 		Vec3 endVelocity (velocity.x * timePassed, velocity.y * timePassed, velocity.z * timePassed);
@@ -108,14 +108,14 @@ Vector::Vec3 Vector::Vec3::getAcceleration(Vec3* pos1, Vec3* pos2, real timePass
 }
 
 
-std::vector<real> Vector::Vec3::getSpeedAndDirection(Vec3* velocity) {
+std::vector<double> Vector::Vec3::getSpeedAndDirection(Vec3* velocity) {
 	auto speed = velocity->getMagnitude3D(velocity);
 	velocity->toUnitVector(velocity);
-	std::vector<real> utils{ velocity->x, velocity->y, velocity->z, speed };
+	std::vector<double> utils{ velocity->x, velocity->y, velocity->z, speed };
 	return utils;
 }
 
 
-void Vector::Vec3::updatePosition(Vec3* velocity, real& time) {
+void Vector::Vec3::updatePosition(Vec3* velocity, double& time) {
 	this->addScaledVector(*velocity, time);
 }

@@ -44,16 +44,16 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
 
         std::string planetType = parsedMessage["type"];
         json coords = parsedMessage["coords"];
-        real theta = parsedMessage["theta"];
+        double theta = parsedMessage["theta"];
 
         if (planetType == "mercury") {
             Particle::Particle mercury;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
-            real orbitRadius = 120;
-            real sunMass = 500; 
-            real gravityConst = 40;
-            real deltaT = 0.1;
+            double orbitRadius = 120;
+            double sunMass = 500; 
+            double gravityConst = 40;
+            double deltaT = 0.1;
 
             mercury.celestialVelocity(gravityConst, sunMass, orbitRadius, theta);
             auto velocity = mercury.velocity;
