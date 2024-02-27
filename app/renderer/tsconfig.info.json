@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "jsx": "preserve",
+      "jsxImportSource": "react"
+    },
+    "include": [
+      "components/**/*.tsx"
+    ]
+  }

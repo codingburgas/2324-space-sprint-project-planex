@@ -1,8 +1,5 @@
 ---
-import Titlebar from "../../components/Titlebar";
-import App from "../../solar-components/solar";
-import Counter from "../../components/Counter";
-export const prerender = true;
+import { BackgroundBeams } from "../../solar-components/background-beams"
 ---
 
 <html lang="en" class="h-screen w-screen">
@@ -25,12 +22,6 @@ export const prerender = true;
     </style>
   </head>
   <body class="h-screen w-screen flex flex-col flex-grow">
-    <div>
-      <Titlebar client:load />
-    </div>
-    <Counter client:load />
-    <main id="root" class="flex-grow">
-      <App client:only="react" />
-    </main>
+    <BackgroundBeams client:load />
   </body>
 </html>
