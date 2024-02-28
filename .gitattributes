@@ -9,6 +9,10 @@
 *.jsx linguist-language=typescript
 *.mjs linguist-language=typescript
 *.html linguist-language=Text
+*.frag linguist-language=glsl
+*.vert linguist-language=glsl
+*.vs linguist-language=glsl
+*.fs linguist-language=glsl
 ###############################################################################
 # Set default behavior for command prompt diff.
 #
