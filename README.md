@@ -82,7 +82,7 @@
 ### Presenting and Team Documentation
 
 - [Documentation](https://github.com/codingburgas/2324-space-sprint-project-planex/files/14411453/planex.docx)
-- [Presentation](https://github.com/codingburgas/2324-space-sprint-project-planex/files/14411664/planex.pptx)
+- [Presentation](https://github.com/codingburgas/2324-space-sprint-project-planex/files/14440419/planex.pptx)
 - [Doxygen](https://github.com/codingburgas/2324-space-sprint-project-planex/blob/main/doc/html/annotated.html)
 - [Gitbook](https://app.gitbook.com/o/QrV3bFI40FppuCPPT6VY/s/2s06wDypGZXuNWLcJV2b/)
 
