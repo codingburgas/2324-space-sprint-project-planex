@@ -10,11 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@andersonmancini/lens-flare": "^1.0.1",
     "@astrojs/check": "^0.4.1",
     "@astrojs/react": "^3.0.10",
     "@astrojs/solid-js": "^4.0.1",
     "@astrojs/tailwind": "^5.1.0",
-    "@react-three/drei": "^9.99.0",
+    "@react-three/drei": "^9.58.5",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "@types/three": "^0.161.2",
@@ -30,7 +31,7 @@
     "solid-js": "^1.8.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
-    "three": "^0.161.0",
+    "three": "^0.152.2",
     "three-js": "^79.0.0",
     "typescript": "^5.3.3"
   },

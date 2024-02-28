@@ -13,6 +13,7 @@ import * as THREE from 'three';
 import Camera from "./Camera"
 import Venus from './models/Venus.tsx';
 import Pluto from './models/Pluto.tsx';
+import { EXRLoader} from 'three/examples/jsm/loaders/EXRLoader.js';	
 
 
 function SceneBackground() {
@@ -21,11 +22,13 @@ function SceneBackground() {
   useEffect(() => {
     scene.background = new THREE.Color('red');
     gl.shadowMap.enabled = true;
-    const loader = new THREE.TextureLoader();
     gl.shadowMap.type = THREE.PCFSoftShadowMap;
-     loader.load('../../public/stars.png', (texture) => {
-      scene.background = texture;
-    });
+    new EXRLoader()
+  .load('../../public/stars.exr', function (texture) {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene.background = texture;
+    scene.environment = texture; 
+  });
   }, [scene, gl]);
 
   return null;
