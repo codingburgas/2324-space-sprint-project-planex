@@ -52,7 +52,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 
   const groupRef = useRef<THREE.Group>(null);
   const [websocket, setWs] = useState<WebSocket | null>(null);
-  const [positionData, setPositionData] = useState({x: 60, y: 0, z: 0});
+  const [positionData, setPositionData] = useState({x: 480, y: 0, z: 0});
 
 useEffect(() => {
     const ws = new WebSocket('ws://localhost:8000');
@@ -83,9 +83,8 @@ useEffect(() => {
 
     if (websocket && websocket.readyState === WebSocket.OPEN && groupRef.current) {
       const position = groupRef.current.position.clone();
-      const theta = Math.atan2(groupRef.current.position.z, groupRef.current.position.x);
-      websocket.send(JSON.stringify({ type: 'mercury', coords: {x: position.x, y: 0, z: position.z}, theta: theta}));
-      groupRef.current.position.set(positionData.x, positionData.y, positionData.z);
+      websocket.send(JSON.stringify({ type: 'mercury', coords: {x: position.x, y: 0, z: position.z}, theta: Math.atan2(groupRef.current.position.x, groupRef.current.position.z)}));
+      groupRef.current.position.set(positionData.z, 0, positionData.x);
     }
 });
 

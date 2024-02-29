@@ -8,6 +8,7 @@
 #include <nlohmann/json.hpp>
 #include "vector.hpp"
 #include "particle.hpp"
+#include <chrono>
 
 
 using websocketpp::lib::placeholders::_1;
@@ -30,6 +31,8 @@ json saturnData;
 json jupiterData;
 json uranusData;
 
+auto startTime = std::chrono::high_resolution_clock::now();
+
 void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::connection_hdl hdl, websocketpp::server<websocketpp::config::asio>::message_ptr msg) {
     
     try {
@@ -44,26 +47,28 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
 
         std::string planetType = parsedMessage["type"];
         json coords = parsedMessage["coords"];
-        real theta = parsedMessage["theta"];
 
         if (planetType == "mercury") {
+
+            auto currentTime = std::chrono::high_resolution_clock::now();
+            real t = std::chrono::duration<real, std::chrono::seconds::period>(currentTime - startTime).count();
+
             Particle::Particle mercury;
-            Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
+            Vector::Vec3 currentPos;
 
             real orbitRadius = 60;
-            real sunMass = 500; 
-            real gravityConst = 40;
-            real deltaT = 0.1;
+            real speed = 1; 
 
-            mercury.celestialVelocity(mercury,gravityConst, sunMass, orbitRadius, theta);
-            auto velocity = mercury.velocity;
-            
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.x = orbitRadius * std::cos(t * speed);
+            currentPos.y = 0;
+            currentPos.z = orbitRadius * std::sin(-t * speed);
+
             json positionJson = {
-            {"x", currentPos.x},
-            {"y", 0},
-            {"z", currentPos.z}
+                {"x", currentPos.x},
+                {"y", currentPos.y}, 
+                {"z", currentPos.z }
             };
+
             mercuryData["coords"] = positionJson;
             mercuryData["type"] = "mercury";
 
@@ -71,18 +76,19 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
         }
         else if (planetType == "venus") {
 
+            real theta = parsedMessage["theta"];
             Particle::Particle venus;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
             real orbitRadius = 120;
             real sunMass = 500;
             real gravityConst = 40;
-            real deltaT = 0.1;
+            real deltaT = 1;
 
             venus.celestialVelocity(venus, gravityConst, sunMass, orbitRadius, theta);
             auto velocity = venus.velocity;
 
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.updatePosition(velocity, deltaT, theta);
             json positionJson = {
             {"x", currentPos.x},
             {"y", 0},
@@ -94,6 +100,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             response = venusData;
         }
         else if (planetType == "earth") {
+            real theta = parsedMessage["theta"];
             Particle::Particle earth;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
@@ -105,7 +112,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             earth.celestialVelocity(earth, gravityConst, sunMass, orbitRadius, theta);
             auto velocity = earth.velocity;
 
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.updatePosition(velocity, deltaT, theta);
             json positionJson = {
             {"x", currentPos.x},
             {"y", 0},
@@ -119,23 +126,26 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
         }
 
         else if (planetType == "mars") {
+
+            real theta = parsedMessage["theta"];
+
             Particle::Particle mars;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
-            real orbitRadius = 205;
-            real sunMass = 500;
-            real gravityConst = 40;
-            real deltaT = 0.1;
+            real orbitRadius = 205; 
 
-            mars.celestialVelocity(mars, gravityConst, sunMass, orbitRadius, theta);
-            auto velocity = mars.velocity;
+            theta += (2 * MATH_PI * (1.0 / 100) * 0.1); 
 
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.x = orbitRadius * std::cos(theta);
+            currentPos.y = 0; 
+            currentPos.z = orbitRadius * std::sin(theta);
+
             json positionJson = {
-            {"x", currentPos.x},
-            {"y", 0},
-            {"z", currentPos.z}
+                {"x", currentPos.x},
+                {"y", currentPos.y},
+                {"z", currentPos.z}
             };
+
             marsData["coords"] = positionJson;
             marsData["type"] = "mars";
 
@@ -144,6 +154,8 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
         }
 
         else if (planetType == "neptune") {
+
+            real theta = parsedMessage["theta"];
 
             Particle::Particle neptune;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
@@ -155,8 +167,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
 
             neptune.celestialVelocity(neptune, gravityConst, sunMass, orbitRadius, theta);
             auto velocity = neptune.velocity;
-
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.updatePosition(velocity, deltaT, theta);
             json positionJson = {
             {"x", currentPos.x},
             {"y", 0},
@@ -170,6 +181,8 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
         }
         else if (planetType == "pluto") {
 
+            real theta = parsedMessage["theta"];
+
             Particle::Particle pluto;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
@@ -181,7 +194,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             pluto.celestialVelocity(pluto, gravityConst, sunMass, orbitRadius, theta);
             auto velocity = pluto.velocity;
 
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.updatePosition(velocity, deltaT, theta);
             json positionJson = {
             {"x", currentPos.x},
             {"y", 0},
@@ -195,6 +208,9 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
         }
 
         else if (planetType == "saturn") {
+
+            real theta = parsedMessage["theta"];
+
             Particle::Particle saturn;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
@@ -206,7 +222,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             saturn.celestialVelocity(saturn, gravityConst, sunMass, orbitRadius, theta);
             auto velocity = saturn.velocity;
 
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.updatePosition(velocity, deltaT, theta);
             json positionJson = {
             {"x", currentPos.x},
             {"y", 0},
@@ -218,6 +234,9 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             response = saturnData;
         }
         else if (planetType == "jupiter") {
+
+            real theta = parsedMessage["theta"];
+
             Particle::Particle jupiter;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
@@ -229,7 +248,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             jupiter.celestialVelocity(jupiter, gravityConst, sunMass, orbitRadius, theta);
             auto velocity = jupiter.velocity;
 
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.updatePosition(velocity, deltaT, theta);
             json positionJson = {
             {"x", currentPos.x},
             {"y", 0},
@@ -240,6 +259,9 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             response = jupiterData;
         }
         else if (planetType == "uranus") {
+
+            real theta = parsedMessage["theta"];
+
             Particle::Particle uranus;
             Vector::Vec3 currentPos(coords["x"], coords["y"], coords["z"]);
 
@@ -251,7 +273,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
             uranus.celestialVelocity(uranus, gravityConst, sunMass, orbitRadius, theta);
             auto velocity = uranus.velocity;
 
-            currentPos.updatePosition(velocity, deltaT);
+            currentPos.updatePosition(velocity, deltaT, theta);
             json positionJson = {
             {"x", currentPos.x},
             {"y", 0},

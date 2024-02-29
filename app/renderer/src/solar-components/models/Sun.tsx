@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree, extend } from "@react-three/fiber";
-import { EffectComposer, Bloom, LensFlare } from "@react-three/postprocessing";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import * as THREE from "three";
 
@@ -81,7 +81,7 @@ export default function Model(props) {
       <EffectComposer>
         <Bloom
           luminanceThreshold={bloomParams.threshold}
-          luminanceSmoothing={0.2}
+          luminanceSmoothing={0.15}
           height={50}
         />
       </EffectComposer>

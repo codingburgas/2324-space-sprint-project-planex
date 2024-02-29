@@ -116,6 +116,11 @@ std::vector<real> Vector::Vec3::getSpeedAndDirection(Vec3& velocity) {
 }
 
 
-void Vector::Vec3::updatePosition(Vec3& velocity, real& time) {
-	this->addScaledVector(velocity, time);
+void Vector::Vec3::updatePosition(Vec3& velocity, real& time, real& theta) {
+	real speed = velocity.getMagnitude3D(velocity);
+	real deltaX = speed * std::cos(theta) * time;
+	real deltaZ = speed * std::sin(theta) * time;
+	this->x += deltaX;
+	this->y = 0;
+	this->z += deltaZ;
 }

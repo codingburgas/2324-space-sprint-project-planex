@@ -49,8 +49,8 @@ void Particle::Particle::addForce(Vector::Vec3* vector) {
 void Particle::Particle::celestialVelocity(Particle& instance, real gravityConst, const real& massParent, const real& orbitRadius, real& theta) {
 	gravityConst = 10;
 	real v = sqrt((gravityConst * massParent) / orbitRadius);
-	real vx = v * cos(theta); 
-	real vz = v * sin(theta);
+	real vx = v * std::cos(theta); 
+	real vz = v * std::sin(theta);
 	instance.velocity.x = vx;
 	instance.velocity.y = 0;
 	instance.velocity.z = vz;

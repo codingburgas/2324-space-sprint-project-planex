@@ -24,7 +24,7 @@ export default function Titlebar() {
         window.electron.send("bar", "min");
     }
     return (
-        <div class=" __titlebar bg-transparent bg-[#000] antialiased">
+        <div class=" __titlebar bg-transparent bg-[#000] antialiased" style={{background:"black"}}>
             <div class="flex flex-row pl-16 antialiased">
                 <img srcSet={iconPath} alt="icon" class="pt-4" />
                 <div class="ml-auto mr-0 flex flex-row antialiased">
