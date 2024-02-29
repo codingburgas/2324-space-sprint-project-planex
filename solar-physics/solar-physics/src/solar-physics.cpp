@@ -61,7 +61,7 @@ void on_message(websocketpp::server<websocketpp::config::asio>* s, websocketpp::
 
             currentPos.x = orbitRadius * std::cos(t * speed);
             currentPos.y = 0;
-            currentPos.z = orbitRadius * std::sin(-t * speed);
+            currentPos.z = 120 + orbitRadius * std::sin(t * speed);
 
             json positionJson = {
                 {"x", currentPos.x},
