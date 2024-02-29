@@ -13,7 +13,7 @@ import * as THREE from 'three';
 import Camera from "./Camera"
 import Venus from './models/Venus.tsx';
 import Pluto from './models/Pluto.tsx';
-import { EXRLoader} from 'three/examples/jsm/loaders/EXRLoader.js';	
+import { EXRLoader} from 'three/examples/jsm/loaders/EXRLoader.js';
 
 
 function SceneBackground() {
@@ -34,6 +34,14 @@ function SceneBackground() {
   return null;
 }
 
+const Planet = ({ position, onClick }) => {
+  return (
+    <mesh position={position} onClick={() => onClick(position)}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial color="orange" />
+    </mesh>
+  );
+};
 
 export default function App() {
   return (

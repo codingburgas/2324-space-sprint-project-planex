@@ -1,47 +1,53 @@
+import { useCallback, useRef, useState } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useEffect } from 'react';
 import * as THREE from 'three';
 import CameraControls from 'camera-controls';
-import { useEffect, useRef, useState } from 'react';
-import { useThree, useFrame } from '@react-three/fiber';
 
-CameraControls.install({ THREE: THREE });
+CameraControls.install({ THREE });
 
 const CustomCameraControls = () => {
-  const [topPov, setTopPov] = useState(true);
-  const {
-    camera,
-    gl, 
-  } = useThree();
-
+  const { camera, gl, scene } = useThree();
   const controlsRef = useRef();
-  let pos = new THREE.Vector3;
-  const updatePosition = (controls : CameraControls) => {
-  controls.getPosition(pos, true)
-}
+  const [target, setTarget] = useState(new THREE.Vector3());
 
   useEffect(() => {
-    if (!controlsRef.current) {
-    const controls : CameraControls = new CameraControls(camera, gl.domElement);
+    const controls = new CameraControls(camera, gl.domElement);
+    controlsRef.current = controls;
+    return () => controls.dispose();
+  }, [camera, gl.domElement]);
 
-    controls.setPosition(0, 100, 20);
-    controls.mouseButtons.right = CameraControls.ACTION.TRUCK;
-    controls.mouseButtons.left = CameraControls.ACTION.TRUCK;
+  const onClick = useCallback((event) => {
+    const mouse = new THREE.Vector2(
+      (event.clientX / window.innerWidth) * 2 - 1,
+      -(event.clientY / window.innerHeight) * 2 + 1
+    );
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
 
-    controls.minDistance = 20;
-    controls.maxDistance = 600;
-    controls.dollyToCursor = true;
-    controls.smoothTime = 0.4;
-
-    controls.verticalDragToForward = true;
-    controls.draggingSmoothTime = 0.1;
-
-      controlsRef.current = controls;
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    if (intersects.length > 0) {
+      const [first] = intersects;
+      setTarget(first.point);
     }
+  }, [camera, scene.children]);
 
-  }, [camera, gl.domElement, pos]);
+  useEffect(() => {
+    window.addEventListener('click', onClick);
+    return () => window.removeEventListener('click', onClick);
+  }, [onClick]);
 
-  useFrame((state, delta) => controlsRef.current?.update(delta));
+  useFrame((state, delta) => {
+    if (controlsRef.current) {
+      controlsRef.current.setTarget(target.x, target.y, target.z);
+      controlsRef.current.update(delta);
+    }
+  });
 
   return null;
 };
 
-export default CustomCameraControls;
+
+
+
+  export default CustomCameraControls;
